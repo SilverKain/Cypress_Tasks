@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning Course - Интерактивные тесты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            animation: slideUp 0.8s ease;
+        }
+
+        .hero h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #666;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .lesson-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .lesson-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .lesson-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #95a5a6;
+        }
+
+        .quiz-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .quiz-btn.disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🇬🇧 English Learning Course</h1>
+            <p>Интерактивные тесты для изучения английского языка</p>
+        </header>
+
+        <div class="hero">
+            <h2>🎓 Добро пожаловать!</h2>
+            <p>Этот курс содержит <strong>12 уроков</strong> и <strong>интерактивные тесты</strong> для проверки знаний. Каждый тест включает автоматическую проверку, визуальную обратную связь и подробные объяснения.</p>
+            <p>Выберите урок ниже и начните прохождение теста прямо в браузере!</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✅</div>
+                <h3>Автопроверка</h3>
+                <p>Мгновенная проверка ваших ответов</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💡</div>
+                <h3>Объяснения</h3>
+                <p>Подробные пояснения к каждому вопросу</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Оценка</h3>
+                <p>Система рейтинга результатов</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Адаптивность</h3>
+                <p>Работает на всех устройствах</p>
+            </div>
+        </div>
+
+        <h2 style="color: white; text-align: center; margin: 40px 0 20px;">📚 Доступные тесты</h2>
+
+        <div class="lessons-grid">
+            <!-- Lesson 1 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 1</span>
+                <h3 class="lesson-title">The English Alphabet</h3>
+                <p class="lesson-description">Тест на знание английского алфавита, звуков и произношения букв. Проверьте, насколько хорошо вы знаете основы!</p>
+                <div class="lesson-meta">
+                    <span>📝 14 вопросов</span>
+                    <span>⏱️ ~10 минут</span>
+                </div>
+                <a href="tests/lesson-01-quiz.html" class="quiz-btn">Пройти тест</a>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 2</span>
+                <h3 class="lesson-title">Pronunciation Rules</h3>
+                <p class="lesson-description">Тест на правила произношения: гласные звуки, TH-звуки, ударение в словах, связная речь.</p>
+                <div class="lesson-meta">
+                    <span>📝 10 вопросов</span>
+                    <span>⏱️ ~8 минут</span>
+                </div>
+                <a href="tests/lesson-02-quiz.html" class="quiz-btn">Пройти тест</a>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 3</span>
+                <h3 class="lesson-title">Everyday Words</h3>
+                <p class="lesson-description">Тест на повседневную лексику: семья, дом, еда, напитки, время, покупки и основные глаголы.</p>
+                <div class="lesson-meta">
+                    <span>📝 12 вопросов</span>
+                    <span>⏱️ ~9 минут</span>
+                </div>
+                <a href="tests/lesson-03-quiz.html" class="quiz-btn">Пройти тест</a>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 4</span>
+                <h3 class="lesson-title">Nouns and Articles</h3>
+                <p class="lesson-description">Существительные, артикли (a/an/the), множественное число.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 5 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 5</span>
+                <h3 class="lesson-title">Present Simple</h3>
+                <p class="lesson-description">Настоящее простое время, глагол to be, формы утверждений, вопросов и отрицаний.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 6 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 6</span>
+                <h3 class="lesson-title">Pronouns</h3>
+                <p class="lesson-description">Личные, притяжательные, возвратные местоимения.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 7 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 7</span>
+                <h3 class="lesson-title">Word Order</h3>
+                <p class="lesson-description">Порядок слов в английском предложении, позиция прилагательных и наречий.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 8 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 8</span>
+                <h3 class="lesson-title">Questions & Negatives</h3>
+                <p class="lesson-description">Вопросительные и отрицательные предложения, question tags.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 9 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 9</span>
+                <h3 class="lesson-title">Adjectives & Adverbs</h3>
+                <p class="lesson-description">Прилагательные и наречия, степени сравнения.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 10 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 10</span>
+                <h3 class="lesson-title">Past & Future Tenses</h3>
+                <p class="lesson-description">Прошедшее и будущее время, Present Perfect.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 11 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 11</span>
+                <h3 class="lesson-title">Prepositions</h3>
+                <p class="lesson-description">Предлоги времени, места и движения, союзы.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+
+            <!-- Lesson 12 -->
+            <div class="lesson-card">
+                <span class="lesson-number">Урок 12</span>
+                <h3 class="lesson-title">Common Phrases</h3>
+                <p class="lesson-description">Разговорные фразы, идиомы, повседневные выражения.</p>
+                <div class="lesson-meta">
+                    <span>📝 — вопросов</span>
+                    <span>⏱️ — минут</span>
+                </div>
+                <span class="coming-soon">Скоро...</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>📚 <strong>English Learning Course</strong> — 12-недельная программа изучения английского языка</p>
+            <p>🔗 <a href="https://github.com/SilverKain/English" target="_blank">GitHub Repository</a></p>
+            <p style="margin-top: 20px; opacity: 0.8;">Made with ❤️ for language learners</p>
+        </footer>
+    </div>
+</body>
+</html>

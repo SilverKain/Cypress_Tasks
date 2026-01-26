@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3 Quiz: Everyday Words</title>
+    <link rel="stylesheet" href="quiz-style.css">
+</head>
+<body>
+    <div class="quiz-container" id="quiz-container"></div>
+
+    <script>
+        // Quiz Data for Lesson 3
+        const quizData = {
+            title: "Lesson 3: Essential Everyday Words",
+            description: "Тест по повседневной лексике английского языка",
+            submitText: "Проверить ответы",
+            questions: [
+                {
+                    question: "How do you say 'Как вас зовут?' in English?",
+                    translation: "Как спросить имя на английском?",
+                    options: [
+                        { text: "What's your age?" },
+                        { text: "What's your name?" },
+                        { text: "Where are you from?" },
+                        { text: "How are you?" }
+                    ],
+                    correctAnswer: 1,
+                    explanation: "'What's your name?' = Как вас зовут? Это базовый вопрос для знакомства. 'What's your age?' = Сколько вам лет?"
+                },
+                {
+                    question: "Which word means 'родители' in English?",
+                    translation: "Какое слово означает 'родители'?",
+                    options: [
+                        { text: "relatives" },
+                        { text: "parents" },
+                        { text: "family" },
+                        { text: "children" }
+                    ],
+                    correctAnswer: 1,
+                    explanation: "parents /ˈpeərənts/ = родители. Mother + Father = Parents. 'Family' = семья (более широкое понятие)."
+                },
+                {
+                    question: "What room do you sleep in?",
+                    translation: "В какой комнате вы спите?",
+                    options: [
+                        { text: "living room" },
+                        { text: "kitchen" },
+                        { text: "bedroom" },
+                        { text: "bathroom" }
+                    ],
+                    correctAnswer: 2,
+                    explanation: "bedroom /ˈbedruːm/ = спальня. Bed (кровать) + room (комната) = bedroom. Вы спите в спальне."
+                },
+                {
+                    question: "Which fruit is yellow and long?",
+                    translation: "Какой фрукт жёлтый и длинный?",
+                    options: [
+                        { text: "apple" },
+                        { text: "orange" },
+                        { text: "banana" },
+                        { text: "tomato" }
+                    ],
+                    correctAnswer: 2,
+                    explanation: "banana /bəˈnænə/ = банан. Жёлтый и длинный фрукт. Apple = яблоко, orange = апельсин."
+                },
+                {
+                    question: "What do you drink in the morning?",
+                    translation: "Что вы пьёте утром?",
+                    options: [
+                        { text: "bread" },
+                        { text: "coffee or tea" },
+                        { text: "rice" },
+                        { text: "meat" }
+                    ],
+                    correctAnswer: 1,
+                    explanation: "coffee /ˈkɒfi/ or tea /tiː/ = кофе или чай. Это напитки, которые часто пьют утром. Bread = хлеб (еда, не напиток)."
+                },
+                {
+                    question: "Which meal do you eat in the evening?",
+                    translation: "Какой приём пищи вечером?",
+                    options: [
+                        { text: "breakfast" },
+                        { text: "lunch" },
+                        { text: "dinner" },
+                        { text: "snack" }
+                    ],
+                    correctAnswer: 2,
+                    explanation: "dinner /ˈdɪnər/ = ужин (вечерний приём пищи). Breakfast = завтрак (утро), lunch = обед (день), snack = перекус."
+                },
+                {
+                    question: "What time is it now? (сейчас)",
+                    translation: "Как сказать 'сейчас' по-английски?",
+                    options: [
+                        { text: "yesterday" },
+                        { text: "tomorrow" },
+                        { text: "now" },
+                        { text: "later" }
+                    ],
+                    correctAnswer: 2,
+                    explanation: "now /naʊ/ = сейчас, в данный момент. Yesterday = вчера, tomorrow = завтра, later = позже."
+                },
+                {
+                    question: "Where do you buy food and groceries?",
+                    translation: "Где вы покупаете еду и продукты?",
+                    options: [
+                        { text: "at the hospital" },
+                        { text: "at the supermarket" },
+                        { text: "at the school" },
+                        { text: "at the park" }
+                    ],
+                    correctAnswer: 1,
+                    explanation: "supermarket /ˈsuːpərˌmɑːrkɪt/ = супермаркет. Место, где покупают еду и продукты. Shop/store = магазин."
+                },
+                {
+                    question: "Which verb means 'иметь'?",
+                    translation: "Какой глагол означает 'иметь'?",
+                    options: [
+                        { text: "do" },
+                        { text: "have" },
+                        { text: "go" },
+                        { text: "see" }
+                    ],
+                    correctAnswer: 1,
+                    explanation: "have /hæv/ = иметь. 'I have a car' = У меня есть машина. Do = делать, go = идти, see = видеть."
+                },
+                {
+                    question: "Complete: 'I ___ to work every day.'",
+                    translation: "Дополните: 'Я ___ на работу каждый день.'",
+                    options: [
+                        { text: "come" },
+                        { text: "see" },
+                        { text: "go" },
+                        { text: "put" }
+                    ],
+                    correctAnswer: 2,
+                    explanation: "'I go to work' = Я хожу на работу. 'Go' /ɡoʊ/ используется для движения К месту. Come = приходить (ОТ места к вам)."
+                },
+                {
+                    question: "What's the opposite of 'expensive'?",
+                    translation: "Что является противоположностью слова 'дорогой'?",
+                    options: [
+                        { text: "cheap" },
+                        { text: "sale" },
+                        { text: "price" },
+                        { text: "money" }
+                    ],
+                    correctAnswer: 0,
+                    explanation: "cheap /tʃiːp/ = дешёвый (противоположность expensive = дорогой). Sale = распродажа, price = цена, money = деньги."
+                },
+                {
+                    question: "How do you say 'брат и сестра' in English?",
+                    translation: "Как сказать 'брат и сестра'?",
+                    options: [
+                        { text: "mother and father" },
+                        { text: "brother and sister" },
+                        { text: "son and daughter" },
+                        { text: "uncle and aunt" }
+                    ],
+                    correctAnswer: 1,
+                    explanation: "brother /ˈbrʌðər/ and sister /ˈsɪstər/ = брат и сестра. Son/daughter = сын/дочь, uncle/aunt = дядя/тётя."
+                }
+            ]
+        };
+    </script>
+    <script src="quiz-engine.js"></script>
+</body>
+</html>
