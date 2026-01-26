@@ -1,0 +1,81 @@
+:root {
+  --bg: #0f1220;
+  --panel: #171a2b;
+  --text: #e8ebf5;
+  --muted: #b8bfd6;
+  --primary: #7aa2ff;
+  --secondary: #9297b7;
+  --success: #3ecf8e;
+  --danger: #ff6b6b;
+}
+* { box-sizing: border-box }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+.site-header { border-bottom: 1px solid #232641; background: linear-gradient(180deg, #101322, #0f1220); }
+.site-header h1 { margin: 0 0 6px; font-weight: 700; letter-spacing: 0.3px; }
+.subtitle { margin: 0 0 12px; color: var(--muted); }
+.nav { display: flex; gap: 16px; flex-wrap: wrap; }
+.nav a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.nav a:hover { text-decoration: underline; }
+.site-footer { border-top: 1px solid #232641; color: var(--muted); }
+
+.panel { background: var(--panel); border: 1px solid #232641; border-radius: 12px; padding: 20px; margin: 24px 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr } }
+.checklist { padding-left: 18px; }
+.details summary { cursor: pointer; color: var(--primary); }
+
+.controls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end; }
+@media (max-width: 900px) { .controls { grid-template-columns: 1fr 1fr } }
+.control-group label { display: block; margin-bottom: 6px; color: var(--muted); }
+input[type="search"], select {
+  width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #2a2e4f; background: #0f1224; color: var(--text);
+}
+.checkbox { display: inline-flex; gap: 8px; align-items: center; }
+
+.btn {
+  background: var(--primary); color: #fff; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 600;
+}
+.btn:hover { filter: brightness(1.05) }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-secondary { background: var(--secondary) }
+.btn-success { background: var(--success) }
+.btn-danger { background: var(--danger) }
+
+.progress { display: grid; gap: 10px; }
+.progress-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #2a2e4f; padding-bottom: 8px; }
+
+.card { position: relative; background: #0f1328; border: 1px solid #2a2e4f; border-radius: 14px; min-height: 220px; padding: 18px; perspective: 1000px; cursor: pointer; }
+.card-face { position: absolute; inset: 0; padding: 18px; backface-visibility: hidden; transition: transform 0.6s; }
+.card-front { transform: rotateY(0deg); }
+.card-back { transform: rotateY(180deg); overflow-y: auto; }
+.card.flipped .card-front { transform: rotateY(180deg); }
+.card.flipped .card-back { transform: rotateY(360deg); }
+.card-section { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+.card-term { font-size: 22px; font-weight: 700; letter-spacing: 0.2px; }
+.card-hint { position: absolute; bottom: 12px; right: 12px; color: var(--secondary); font-size: 12px; }
+.card-content { font-size: 16px; line-height: 1.5; }
+.card-actions { display: flex; gap: 10px; margin-top: 12px; }
+
+.quiz-controls { display: flex; gap: 10px; align-items: center; }
+.quiz-area.hidden, .quiz-result.hidden { display: none }
+.quiz-status { color: var(--muted); margin-bottom: 8px; }
+.quiz-question { font-weight: 700; margin: 8px 0 12px; }
+.quiz-options { display: grid; gap: 8px; }
+.quiz-option { padding: 10px 12px; border-radius: 8px; border: 1px solid #2a2e4f; background: #0f1328; cursor: pointer; }
+.quiz-option.correct { border-color: #2ecc71; }
+.quiz-option.incorrect { border-color: #e74c3c; }
+
+.glossary-list { list-style: none; padding-left: 0; display: grid; gap: 8px; }
+.glossary-item { padding: 10px 12px; border-radius: 8px; border: 1px solid #2a2e4f; background: #0f1328; display: grid; gap: 4px; }
+.glossary-item .term { font-weight: 700; }
+.glossary-item .section { color: var(--secondary); font-size: 12px; }
+
+/* Доступность */
+.large-text { font-size: 18px }
+.high-contrast { --bg: #000; --panel: #000; --text: #fff; --muted: #ccc; --primary: #00b7ff; --secondary: #777; --success: #29ff8e; --danger: #ff5050; }

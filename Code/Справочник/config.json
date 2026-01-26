@@ -1,0 +1,176 @@
+{
+  "project": {
+    "name": "QA Справочник",
+    "version": "1.0.0",
+    "description": "Веб-справочник по функциям и операциям автоматизации тестирования",
+    "created": "2026-01-08",
+    "author": "QA Team"
+  },
+  "categories": [
+    {
+      "id": "selenium",
+      "name": "Selenium",
+      "description": "WebDriver функции для автоматизации браузера",
+      "color": "#10b981",
+      "icon": "🌐"
+    },
+    {
+      "id": "requests", 
+      "name": "Requests",
+      "description": "HTTP библиотека для API тестирования",
+      "color": "#3b82f6",
+      "icon": "🔗"
+    },
+    {
+      "id": "pytest",
+      "name": "Pytest", 
+      "description": "Фреймворк для тестирования Python",
+      "color": "#f59e0b",
+      "icon": "🧪"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "description": "Встроенные функции и стандартная библиотека",
+      "color": "#8b5cf6",
+      "icon": "🐍"
+    }
+  ],
+  "searchTags": [
+    "webdriver", "driver", "browser", "chrome",
+    "find", "element", "locate", "by", "xpath", "css",
+    "click", "send", "keys", "input", "text",
+    "wait", "until", "expected", "conditions",
+    "execute", "script", "javascript", "scroll",
+    "requests", "post", "get", "put", "delete",
+    "json", "response", "status", "code", "headers",
+    "api", "http", "url", "endpoint",
+    "pytest", "fixture", "test", "assert",
+    "setup", "teardown", "parametrize",
+    "random", "time", "sleep", "isinstance",
+    "string", "format", "f-string", "exception"
+  ],
+  "features": {
+    "search": {
+      "enabled": true,
+      "placeholder": "Поиск по функциям, методам и операциям...",
+      "suggestions": true,
+      "hotkey": "Ctrl+K"
+    },
+    "filtering": {
+      "enabled": true,
+      "defaultCategory": "all"
+    },
+    "addFunction": {
+      "enabled": true,
+      "requireApproval": false
+    },
+    "editFunction": {
+      "enabled": true,
+      "requireConfirmation": true  
+    },
+    "deleteFunction": {
+      "enabled": true,
+      "requireConfirmation": true
+    },
+    "exportImport": {
+      "enabled": true,
+      "formats": ["json"]
+    },
+    "localStorage": {
+      "enabled": true,
+      "keyName": "qaFunctions",
+      "autoSave": true
+    }
+  },
+  "ui": {
+    "theme": {
+      "primary": "#4f46e5",
+      "secondary": "#06b6d4", 
+      "success": "#10b981",
+      "error": "#ef4444",
+      "warning": "#f59e0b"
+    },
+    "animations": {
+      "enabled": true,
+      "duration": "0.3s"
+    },
+    "responsive": {
+      "enabled": true,
+      "breakpoints": {
+        "mobile": "480px",
+        "tablet": "768px",
+        "desktop": "1200px"
+      }
+    }
+  },
+  "defaultFunctions": [
+    {
+      "name": "webdriver.Chrome()",
+      "category": "selenium",
+      "description": "Создает экземпляр Chrome WebDriver для автоматизации браузера",
+      "example": "driver = webdriver.Chrome()",
+      "tags": "webdriver, driver, browser, chrome",
+      "builtin": true
+    },
+    {
+      "name": "requests.post(url, json=data)",
+      "category": "requests", 
+      "description": "Отправляет POST запрос с JSON данными",
+      "example": "response = requests.post(url, json=user_data)",
+      "tags": "post, request, api, http, json",
+      "builtin": true
+    },
+    {
+      "name": "@pytest.fixture",
+      "category": "pytest",
+      "description": "Декоратор для создания фикстур",
+      "example": "@pytest.fixture\ndef driver():\n    driver = webdriver.Chrome()\n    yield driver\n    driver.quit()",
+      "tags": "fixture, setup, teardown, pytest",
+      "builtin": true
+    }
+  ],
+  "extensibility": {
+    "allowNewCategories": true,
+    "allowCustomTags": true,
+    "allowCustomFields": false,
+    "maxFunctionsPerCategory": 100,
+    "maxTagsPerFunction": 10
+  },
+  "performance": {
+    "lazyLoading": false,
+    "searchDebounce": 300,
+    "animationReducedMotion": "respect-user-preference"
+  },
+  "future": {
+    "plannedFeatures": [
+      "Темная тема",
+      "Избранные функции",
+      "История поиска", 
+      "Версионность функций",
+      "Облачная синхронизация",
+      "PWA поддержка",
+      "Оффлайн режим",
+      "Многоязычность"
+    ],
+    "technicalImprovements": [
+      "TypeScript поддержка",
+      "Build система",
+      "Unit тесты",
+      "E2E тесты", 
+      "CI/CD пайплайн",
+      "Code splitting",
+      "Service Worker"
+    ]
+  },
+  "analytics": {
+    "trackSearch": false,
+    "trackUsage": false,
+    "trackPerformance": false
+  },
+  "security": {
+    "sanitizeInput": true,
+    "validateImports": true,
+    "maxFileSize": "10MB"
+  }
+}

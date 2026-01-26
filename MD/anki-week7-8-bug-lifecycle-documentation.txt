@@ -1,0 +1,166 @@
+# Anki Cards: Week 7-8 - Bug Lifecycle & Documentation
+# Карточки для импорта в Anki: Жизненный цикл дефекта, статусы, приоритеты, документация
+# Формат: Фронт карточки [TAB] Бэк карточки
+# Количество карточек: 200
+
+Critical Bug	Критерии: Блокирует критичную функциональность, препятствует дальнейшему тестированию, угрожает безопасности данных, вызывает потерю данных. Примеры: Невозможность авторизации, падение системы при запуске, SQL-инъекции, потеря платежных данных. Действия QA: Немедленная эскалация, детальное воспроизведение, приоритет в исправлении, обязательная верификация.
+
+Major Bug	Критерии: Существенно влияет на функциональность, но есть workaround, влияет на бизнес-процессы, снижает производительность. Примеры: Неработающий поиск, некорректные расчеты, неправильное отображение данных. Действия QA: Документирование workaround, планирование исправления в текущем релизе, информирование stakeholders.
+
+Minor Bug	Критерии: Косметические дефекты, незначительные отклонения от требований, не влияет на основную функциональность. Примеры: Опечатки в тексте, неправильные цвета, мелкие UI несоответствия. Действия QA: Группировка в batch для исправления, включение в backlog, проверка в regression testing.
+
+Trivial Bug	Критерии: Минимальное влияние на пользователя, предложения по улучшению, enhancement requests. Примеры: Предложения по UI, оптимизация текстов, улучшение usability. Действия QA: Документирование как improvement, обсуждение приоритета с Product Owner, включение в будущие релизы.
+
+High Priority	Критерии: Требует срочного исправления, блокирует релиз, влияет на ключевые сценарии, связан с deadline. Примеры: Bugs в production, критичные бизнес-функции, security уязвимости. Действия QA: Ежедневное отслеживание, координация с разработкой, подготовка к hotfix, немедленное тестирование исправлений.
+
+Medium Priority	Критерии: Должно быть исправлено в текущем релизе, есть workaround, умеренное влияние на пользователей. Примеры: Функциональные ошибки с обходными путями, performance issues, интеграционные проблемы. Действия QA: Планирование в спринт, регулярный мониторинг статуса, подготовка тест-кейсов для верификации.
+
+Low Priority	Критерии: Может быть отложено, минимальное влияние, косметические изменения. Примеры: UI improvements, minor text changes, optimization suggestions. Действия QA: Включение в backlog, группировка с подобными issues, тестирование при наличии времени.
+
+Bug Life Cycle	Критерии: Полный цикл от обнаружения до закрытия: New → Open → Assigned → In Progress → Fixed → Retest → Verified → Closed. Примеры: Defect workflow в Jira, статусы в TestRail, transitions в Azure DevOps. Действия QA: Контроль переходов статусов, участие в triage, верификация исправлений, closure validation.
+
+New Status	Критерии: Дефект только что создан, требует первичного анализа, ожидает triage, не назначен исполнителю. Примеры: Bug только что найден тестировщиком, автоматически созданный из мониторинга, пользовательский репорт. Действия QA: Первичная верификация, добавление деталей, присвоение severity/priority, подготовка к triage.
+
+Open Status	Критерии: Дефект подтвержден, прошел triage, принят к исправлению, находится в backlog команды. Примеры: Validated bug после team review, confirmed defect в Sprint Planning, approved issue для разработки. Действия QA: Мониторинг assignment, уточнение требований при необходимости, подготовка test data для fix verification.
+
+Assigned Status	Критерии: Дефект назначен конкретному разработчику, есть ответственный за исправление, включен в план работ. Примеры: Developer взял bug в работу, task assigned в Sprint, ownership установлен. Действия QA: Координация с назначенным разработчиком, предоставление дополнительной информации, мониторинг progress.
+
+In Progress Status	Критерии: Разработчик активно работает над исправлением, ведется coding/debugging, progress visible. Примеры: Code changes в процессе, debugging session активен, developer updates status. Действия QA: Поддержка debugging процесса, предоставление test environment, готовность к code review.
+
+Fixed Status	Критерии: Разработчик завершил исправление, код готов к тестированию, fix deployed в test environment, требует verification. Примеры: Code merged в feature branch, build готов для testing, developer confirms fix completion. Действия QA: Немедленное планирование retest, подготовка verification scenarios, координация test environment access.
+
+Retest Status	Критерии: QA активно тестирует исправление, выполняется verification process, проводится regression testing. Примеры: Execution of verification test cases, regression testing в affected areas, validation of fix effectiveness. Действия QA: Тщательная проверка fix, regression testing, documentation результатов, communication с разработчиком при необходимости.
+
+Verified Status	Критерии: QA подтвердил исправление дефекта, fix работает корректно, regression testing passed, ready for closure. Примеры: Test cases passed, no side effects found, functionality restored, stakeholder approval received. Действия QA: Финальная документация результатов, communication stakeholders, подготовка к closure, обновление test cases при необходимости.
+
+Closed Status	Критерии: Дефект полностью исправлен и проверен, все stakeholders согласны с closure, fix deployed в production. Примеры: Successful production deployment, user acceptance confirmed, no reopening requests. Действия QA: Final status update, lessons learned documentation, metrics update, closure confirmation в reporting.
+
+Reopened Status	Критерии: Ранее закрытый дефект возник снова, fix оказался неполным, новые проявления старой проблемы. Примеры: Bug recurrence после deployment, incomplete fix discovery, regression в новой версии. Действия QA: Повторный анализ root cause, обновление bug description, escalation к original developer, additional test scenarios creation.
+
+Deferred Status	Критерии: Дефект отложен для будущих релизов, низкий приоритет, resource constraints, business decision. Примеры: Minor UI issues, enhancement requests, performance optimizations, low-impact bugs. Действия QA: Justification documentation, backlog inclusion, periodic review scheduling, impact reassessment planning.
+
+Rejected Status	Критерии: Дефект признан invalid, not reproducible, by design, duplicate или not a bug. Примеры: User misunderstanding, intended behavior, environment-specific issues, duplicate reports. Действия QA: Подробное обоснование rejection, documentation для future reference, communication с reporter, knowledge base update.
+
+Duplicate Status	Критерии: Идентичный дефект уже существует в системе, refers к существующему ticket, multiple reports одной проблемы. Примеры: Same issue reported by different testers, multiple user reports, related bugs consolidated. Действия QA: Link к original ticket, consolidation information, notification всех reporters, tracking centralization.
+
+Won't Fix Status	Критерии: Дефект не будет исправляться по business reasons, architectural limitations, cost considerations. Примеры: Legacy code limitations, third-party dependencies, design decisions, cost-benefit analysis. Действия QA: Business justification documentation, workaround provision, user communication, knowledge base update.
+
+Invalid Status	Критерии: Репорт не является дефектом, incorrect understanding, configuration issue, user error. Примеры: Feature working as designed, user training issue, environment misconfiguration, documentation gap. Действия QA: Clear explanation provision, documentation reference, user education, FAQ update.
+
+Cannot Reproduce	Критерии: Unable to reproduce заявленную проблему, insufficient information, environment-specific issue, intermittent bug. Примеры: Rare timing issues, specific configuration dependencies, unclear reproduction steps, missing test data. Действия QA: Additional information request, different environment testing, collaboration с reporter, detailed investigation.
+
+Need More Info	Критерии: Недостаточно информации для анализа, требуются дополнительные детали, unclear reproduction steps. Примеры: Vague bug descriptions, missing screenshots, incomplete logs, unclear expected behavior. Действия QA: Specific information requests, template provision, collaboration с reporter, clarification meetings.
+
+Bug Report Template	Критерии: Стандартизированный формат для описания дефектов: Title, Environment, Steps to Reproduce, Expected Result, Actual Result, Severity, Priority, Attachments. Примеры: Jira bug template, TestRail defect form, Azure DevOps work item template. Действия QA: Template enforcement, quality validation, completeness verification, standardization maintenance.
+
+Reproduction Steps	Критерии: Пошаговая инструкция для воспроизведения дефекта, должны быть clear, detailed, и repeatable. Примеры: "1. Open login page 2. Enter invalid credentials 3. Click Login button 4. Observe error message". Действия QA: Clarity verification, step-by-step validation, different tester reproduction, simplification при возможности.
+
+Expected vs Actual Result	Критерии: Четкое описание ожидаемого поведения vs фактического результата, основанное на requirements. Примеры: Expected: "Success message displayed", Actual: "Error 500 returned". Действия QA: Requirements reference, clear description writing, screenshot provision, behavioral comparison documentation.
+
+Environment Information	Критерии: Полная информация о test environment: OS, browser version, application version, device details, network conditions. Примеры: "Windows 10, Chrome 118, App v2.3.1, iPhone 15, WiFi connection". Действия QA: Complete environment documentation, version tracking, configuration details, reproducibility across environments.
+
+Severity Assessment	Критерии: Оценка технического влияния дефекта на систему: Critical, High, Medium, Low. Примеры: Critical - система не запускается, High - основная функция не работает, Medium - minor functionality affected, Low - cosmetic issues. Действия QA: Technical impact analysis, system stability evaluation, functionality assessment, business impact consideration.
+
+Priority Assignment	Критерии: Бизнес-приоритет исправления дефекта: Urgent, High, Normal, Low. Примеры: Urgent - production outage, High - affects key users, Normal - standard workflow, Low - future consideration. Действия QA: Business impact analysis, stakeholder consultation, deadline consideration, resource availability assessment.
+
+Defect Classification	Критерии: Категоризация дефектов по типам: Functional, Performance, UI/UX, Security, Integration, Data. Примеры: Functional - feature не работает, Performance - slow response, UI - layout issues, Security - data exposure. Действия QA: Accurate categorization, impact area identification, specialist assignment, targeted testing approach.
+
+Root Cause Analysis	Критерии: Исследование fundamental причины дефекта для prevention: Code defect, Design flaw, Requirements gap, Environment issue. Примеры: Code logic error, missing requirement, integration misconfiguration, third-party dependency. Действия QA: Analysis facilitation, pattern identification, prevention recommendations, process improvement suggestions.
+
+Defect Metrics	Критерии: Количественные показатели для tracking defect trends: Defect density, discovery rate, fix rate, escape rate. Примеры: 5 defects per 1000 LOC, 10 bugs/day discovery, 95% fix rate, 2% escape rate. Действия QA: Metrics collection, trend analysis, reporting stakeholders, improvement opportunities identification.
+
+Defect Triage Process	Критерии: Процесс оценки и приоритизации дефектов командой: Review, categorization, assignment, scheduling. Примеры: Daily triage meetings, severity/priority matrix usage, resource allocation decisions. Действия QA: Triage meeting participation, defect presentation, priority discussion, consensus facilitation.
+
+Bug Tracking Tool	Критерии: Система для управления defect lifecycle: creation, tracking, reporting, analysis capabilities. Примеры: Jira, Azure DevOps, TestRail, Bugzilla, Mantis. Действия QA: Tool administration, workflow configuration, reporting setup, team training, best practices enforcement.
+
+Defect Prevention	Критерии: Proactive меры для предотвращения дефектов: Process improvement, training, reviews, automation. Примеры: Code reviews, requirements analysis, design reviews, test automation, static analysis. Действия QA: Prevention strategy development, process enhancement, team collaboration, quality gates implementation.
+
+Regression Testing for Fixes	Критерии: Тестирование для проверки что fix не нарушил existing functionality: Impact analysis, test selection, execution. Примеры: Related functionality testing, integration points validation, user scenarios verification. Действия QA: Regression scope definition, test case selection, automation utilization, comprehensive validation.
+
+Defect Verification Process	Критерии: Процесс подтверждения исправления дефекта: Test case execution, scenario validation, acceptance confirmation. Примеры: Original scenario retest, edge cases validation, integration testing, user acceptance testing. Действия QA: Verification planning, thorough testing, result documentation, stakeholder communication.
+
+Fix Validation Criteria	Критерии: Критерии successful defect resolution: Original issue resolved, no side effects, requirements met, stakeholder approval. Примеры: Feature works as expected, no new bugs introduced, performance maintained, user acceptance achieved. Действия QA: Criteria establishment, validation checklist, comprehensive testing, sign-off procedures.
+
+Defect Closure Criteria	Критерии: Условия для closing defect: Fix verified, testing complete, stakeholder approval, production deployment. Примеры: All test cases passed, no regression found, business approval received, live environment validated. Действия QA: Closure checklist verification, final validation, documentation completion, stakeholder confirmation.
+
+Hotfix Process	Критерии: Expedited процесс для critical defect fixes в production: Emergency assessment, rapid development, fast-track testing. Примеры: Production outage fix, security vulnerability patch, data corruption repair. Действия QA: Emergency testing protocols, risk assessment, rapid validation procedures, expedited deployment support.
+
+Defect Communication	Критерии: Effective коммуникация о дефектах stakeholders: Clear description, timely updates, impact assessment, resolution status. Примеры: Status reports, escalation notifications, impact summaries, resolution confirmations. Действия QA: Communication planning, stakeholder management, update scheduling, transparency maintenance.
+
+Defect Documentation Standards	Критерии: Consistent стандарты для defect documentation: Template compliance, detail completeness, attachment inclusion, follow-up tracking. Примеры: Standardized templates, required fields, screenshot guidelines, log file inclusion. Действия QA: Standards enforcement, template maintenance, quality reviews, training provision.
+
+Bug Triaging Guidelines	Критерии: Guidelines для effective defect triage: Evaluation criteria, decision frameworks, escalation procedures, resource allocation. Примеры: Severity/priority matrix, business impact assessment, technical complexity evaluation. Действия QA: Guidelines development, team training, process consistency, decision documentation.
+
+Defect Aging Analysis	Критерии: Анализ времени жизни дефектов для process improvement: Age tracking, bottleneck identification, resolution time analysis. Примеры: Average time in each status, oldest open bugs, resolution trend analysis. Действия QA: Aging metrics collection, trend analysis, bottleneck identification, process optimization.
+
+Critical Path Defects	Критерии: Дефекты affecting critical business flows: Payment processing, user authentication, core features, integration points. Примеры: Payment gateway failures, login system issues, data synchronization problems. Действия QA: Critical path identification, priority escalation, resource allocation, rapid resolution tracking.
+
+Production Defect Process	Критерии: Specialized процесс для production defects: Impact assessment, emergency response, user communication, rapid resolution. Примеры: Live site issues, customer-impacting bugs, service disruptions, data integrity problems. Действия QA: Emergency protocols, stakeholder notification, rapid assessment procedures, resolution validation.
+
+Defect Trends Analysis	Критерии: Analysis of defect patterns для continuous improvement: Component analysis, root cause trends, team performance, process gaps. Примеры: Module-wise defect distribution, recurring issue patterns, team productivity metrics. Действия QA: Trend identification, pattern analysis, improvement recommendations, preventive measures.
+
+Defect Review Meetings	Критерии: Regular meetings для defect status review: Status updates, priority adjustments, resource allocation, process improvements. Примеры: Daily bug triage, weekly defect review, monthly metrics review, quarterly process assessment. Действия QA: Meeting facilitation, agenda preparation, action items tracking, follow-up coordination.
+
+Escape Defect Analysis	Критерии: Analysis of defects escaping to production: Detection gaps, process failures, prevention opportunities. Примеры: Customer-reported bugs, production incidents, missed test scenarios, requirement gaps. Действия QA: Escape rate calculation, gap analysis, process improvement, prevention strategy development.
+
+Defect Resolution SLA	Критерии: Service level agreements для defect resolution: Response time targets, resolution timelines, escalation triggers. Примеры: Critical - 4 hours response, High - 1 day resolution, Medium - 1 week, Low - next release. Действия QA: SLA monitoring, escalation procedures, performance tracking, stakeholder reporting.
+
+Customer-Reported Defects	Критерии: Special handling для customer-reported issues: Priority escalation, customer communication, rapid response, satisfaction tracking. Примеры: Customer support tickets, user feedback, complaint escalations, satisfaction surveys. Действия QA: Customer impact assessment, rapid response procedures, communication protocols, satisfaction monitoring.
+
+Defect Database Management	Критерии: Effective management defect repository: Data integrity, search optimization, reporting capabilities, archival procedures. Примеры: Clean data maintenance, duplicate prevention, search indexing, historical data management. Действия QA: Database administration, data quality maintenance, search optimization, archival planning.
+
+Duplicate Defect Prevention	Критерии: Measures to prevent duplicate bug reports: Search before create, similar issue detection, team communication. Примеры: Search functionality usage, automated duplicate detection, team awareness, knowledge sharing. Действия QA: Prevention procedures, search training, duplicate detection tools, team communication.
+
+Defect Impact Assessment	Критерии: Evaluation of defect business/technical impact: User impact, business process disruption, system stability, data integrity. Примеры: User workflow blockage, revenue impact, system performance degradation, data corruption risk. Действия QA: Impact analysis frameworks, stakeholder consultation, risk assessment, mitigation planning.
+
+Test Case to Defect Mapping	Критерии: Linking defects to test cases для traceability: Test case identification, coverage analysis, gap identification. Примеры: Failed test case reference, requirement traceability, coverage gap analysis, test improvement opportunities. Действия QA: Mapping maintenance, traceability verification, gap analysis, test case enhancement.
+
+Defect Workflow Automation	Критерии: Automation of defect lifecycle processes: Status transitions, notifications, assignments, reporting. Примеры: Automatic assignment rules, status change notifications, escalation triggers, report generation. Действия QA: Workflow design, automation rules setup, notification configuration, process optimization.
+
+Quality Gates for Defects	Критерии: Quality checkpoints in defect process: Entry criteria, resolution criteria, closure criteria, escalation triggers. Примеры: Minimum information requirements, fix validation standards, stakeholder approvals, time-based escalations. Действия QA: Gate definition, criteria enforcement, compliance monitoring, process adherence.
+
+Defect Knowledge Base	Критерии: Repository of defect-related knowledge: Common issues, solutions, workarounds, prevention tips. Примеры: FAQ sections, known issue lists, troubleshooting guides, best practice documents. Действия QA: Knowledge capture, documentation maintenance, search optimization, team access facilitation.
+
+Cross-Team Defect Coordination	Критерии: Coordination of defects affecting multiple teams: Ownership clarification, communication protocols, resolution coordination. Примеры: Integration defects, shared component issues, cross-functional impacts, dependency management. Действия QA: Coordination protocols, communication facilitation, ownership resolution, progress tracking.
+
+Defect Retrospectives	Критерии: Regular reviews для defect process improvement: Lessons learned, process gaps, team feedback, action items. Примеры: Sprint retrospectives, monthly reviews, post-release analysis, team feedback sessions. Действия QA: Retrospective facilitation, feedback collection, improvement identification, action planning.
+
+Risk-Based Defect Prioritization	Критерии: Prioritizing defects based on risk assessment: Business risk, technical risk, probability, impact. Примеры: High business impact + high probability = top priority, low impact + low probability = deferred. Действия QA: Risk assessment frameworks, prioritization matrices, stakeholder alignment, resource optimization.
+
+Defect Escalation Matrix	Критерии: Clear escalation paths для different defect scenarios: Severity-based escalation, time-based escalation, stakeholder involvement. Примеры: Critical bugs → immediate manager notification, aging bugs → weekly escalation, customer issues → executive involvement. Действия QA: Matrix definition, escalation procedures, stakeholder mapping, communication protocols.
+
+Automated Defect Detection	Критерии: Automation tools для proactive defect detection: Static analysis, monitoring alerts, automated testing, log analysis. Примеры: Code analysis tools, application monitoring, automated test failures, error log parsing. Действия QA: Tool selection, integration setup, alert configuration, automation strategy.
+
+Defect Cost Analysis	Критерии: Analysis of defect-related costs: Detection cost, fix cost, delay impact, customer satisfaction impact. Примеры: Development time, testing effort, production incidents, customer churn. Действия QA: Cost tracking, impact measurement, ROI analysis, prevention investment justification.
+
+Mobile Defect Considerations	Критерии: Special considerations для mobile defects: Device fragmentation, OS versions, network conditions, app store guidelines. Примеры: Device-specific issues, iOS/Android differences, connectivity problems, app store rejections. Действия QA: Mobile-specific testing, device coverage, network simulation, platform compliance.
+
+Security Defect Handling	Критерии: Special procedures для security-related defects: Confidentiality, rapid response, coordinated disclosure, compliance requirements. Примеры: SQL injection vulnerabilities, data exposure issues, authentication bypasses, encryption problems. Действия QA: Security protocols, confidential handling, rapid assessment, compliance verification.
+
+Performance Defect Analysis	Критерии: Specialized analysis для performance-related defects: Baseline comparison, bottleneck identification, scalability impact, user experience. Примеры: Page load times, response delays, memory leaks, database performance. Действия QA: Performance benchmarking, profiling analysis, scalability testing, optimization recommendations.
+
+Integration Defect Management	Критерии: Managing defects в integration scenarios: Component isolation, interface validation, data flow verification, system compatibility. Примеры: API integration failures, data mapping errors, service communication issues, third-party dependencies. Действия QA: Integration testing, interface validation, component isolation, system verification.
+
+Defect Prevention Metrics	Критерии: Metrics для measuring defect prevention effectiveness: Prevention rate, early detection rate, cost savings, quality improvement. Примеры: Code review effectiveness, requirements quality, test coverage impact, process improvement ROI. Действия QA: Prevention measurement, effectiveness analysis, ROI calculation, continuous improvement.
+
+Legacy System Defects	Критерии: Special handling для legacy system defects: Risk assessment, impact analysis, modernization consideration, workaround strategies. Примеры: Mainframe integration issues, outdated technology constraints, documentation gaps, limited testing options. Действия QA: Legacy assessment, risk evaluation, modernization planning, workaround development.
+
+Defect Classification Taxonomy	Критерии: Comprehensive classification system для defects: Functional categories, technical categories, business impact, resolution complexity. Примеры: UI defects, business logic errors, integration failures, performance issues, security vulnerabilities. Действия QA: Taxonomy maintenance, classification training, reporting standardization, trend analysis.
+
+Continuous Integration Defects	Критерии: Managing defects в CI/CD environments: Build failures, automated test failures, deployment issues, pipeline optimization. Примеры: Compilation errors, unit test failures, integration test failures, deployment script issues. Действия QA: CI integration, automated detection, rapid feedback, pipeline optimization.
+
+User Experience Defects	Критерии: Handling UX-related defects: Usability issues, accessibility problems, design inconsistencies, user journey disruptions. Примеры: Navigation confusion, accessibility violations, responsive design issues, user workflow problems. Действия QA: UX testing, accessibility validation, user feedback collection, design compliance.
+
+API Defect Management	Критерии: Specialized handling для API defects: Contract validation, backward compatibility, documentation accuracy, integration impact. Примеры: Response format changes, endpoint errors, authentication failures, rate limiting issues. Действия QA: API testing, contract validation, documentation verification, integration testing.
+
+Compliance-Related Defects	Критерии: Managing defects affecting regulatory compliance: Compliance risk, regulatory requirements, audit implications, legal considerations. Примеры: GDPR violations, accessibility non-compliance, industry standard deviations, audit findings. Действия QA: Compliance verification, regulatory alignment, audit preparation, legal consultation.
+
+Defect Pattern Recognition	Критерии: Identifying recurring defect patterns для proactive prevention: Code patterns, design patterns, process patterns, team patterns. Примеры: Common coding mistakes, recurring design flaws, process gaps, team knowledge gaps. Действия QA: Pattern analysis, trend identification, prevention strategies, training needs assessment.
+
+Emergency Defect Response	Критерии: Procedures для emergency defect situations: Rapid assessment, emergency teams, communication protocols, recovery procedures. Примеры: Production outages, security breaches, data corruption, critical functionality failures. Действия QA: Emergency procedures, response teams, communication plans, recovery validation.
+
+Defect Reporting Analytics	Критерии: Advanced analytics для defect data: Predictive analysis, trend forecasting, correlation analysis, performance indicators. Примеры: Defect prediction models, release quality forecasts, team performance analytics, process optimization insights. Действия QA: Analytics implementation, data modeling, insight generation, decision support.
+
+Cross-Platform Defect Tracking	Критерии: Managing defects across multiple platforms: Platform-specific issues, consistency validation, cross-platform testing, unified tracking. Примеры: Web vs mobile differences, browser compatibility issues, device-specific problems, platform feature parity. Действия QA: Cross-platform testing, consistency validation, unified tracking, platform optimization.
+
+Defect Resolution Optimization	Критерии: Optimizing defect resolution processes: Efficiency improvement, resource optimization, bottleneck elimination, cycle time reduction. Примеры: Automated workflows, parallel processing, resource allocation optimization, process streamlining. Действия QA: Process analysis, bottleneck identification, optimization implementation, performance monitoring.

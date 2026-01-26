@@ -1,0 +1,76 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Simple Calculator</title>
+        </head>
+        <body>
+            <h1>Calculator Test</h1>
+            <div>
+                <input type="text" id="display" readonly value="0" style="width: 300px; height: 50px; font-size: 20px; text-align: right;">
+            </div>
+            <br>
+            <div>
+                <button onclick="clearDisplay()" id="clear">C</button>
+                <button onclick="appendToDisplay('/')" id="divide">/</button>
+                <button onclick="appendToDisplay('*')" id="multiply">*</button>
+                <button onclick="deleteLast()" id="delete">Del</button>
+            </div>
+            <div>
+                <button onclick="appendToDisplay('7')" id="btn7">7</button>
+                <button onclick="appendToDisplay('8')" id="btn8">8</button>
+                <button onclick="appendToDisplay('9')" id="btn9">9</button>
+                <button onclick="appendToDisplay('-')" id="subtract">-</button>
+            </div>
+            <div>
+                <button onclick="appendToDisplay('4')" id="btn4">4</button>
+                <button onclick="appendToDisplay('5')" id="btn5">5</button>
+                <button onclick="appendToDisplay('6')" id="btn6">6</button>
+                <button onclick="appendToDisplay('+')" id="add">+</button>
+            </div>
+            <div>
+                <button onclick="appendToDisplay('1')" id="btn1">1</button>
+                <button onclick="appendToDisplay('2')" id="btn2">2</button>
+                <button onclick="appendToDisplay('3')" id="btn3">3</button>
+                <button onclick="calculate()" id="equals" rowspan="2">=</button>
+            </div>
+            <div>
+                <button onclick="appendToDisplay('0')" id="btn0" style="width: 100px;">0</button>
+                <button onclick="appendToDisplay('.')" id="decimal">.</button>
+            </div>
+            
+            <script>
+                let display = document.getElementById('display');
+                
+                function clearDisplay() {
+                    display.value = '0';
+                }
+                
+                function appendToDisplay(value) {
+                    if (display.value === '0' && value !== '.') {
+                        display.value = value;
+                    } else {
+                        display.value += value;
+                    }
+                }
+                
+                function deleteLast() {
+                    if (display.value.length > 1) {
+                        display.value = display.value.slice(0, -1);
+                    } else {
+                        display.value = '0';
+                    }
+                }
+                
+                function calculate() {
+                    try {
+                        let result = eval(display.value);
+                        display.value = result;
+                    } catch (error) {
+                        display.value = 'Error';
+                    }
+                }
+            </script>
+        </body>
+        </html>
+        

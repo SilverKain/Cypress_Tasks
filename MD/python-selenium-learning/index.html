@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python для Selenium | Автоматизация тестирования</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">🐍</span>
+            <span class="brand-text">Python for Selenium</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Главная</a></li>
+            <li><a href="#modules">Модули</a></li>
+            <li><a href="#practice">Практика</a></li>
+            <li><a href="#resources">Ресурсы</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" title="Сменить тему">🌙</button>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Изучай Python для <span class="highlight">Selenium</span></h1>
+            <p class="subtitle">Комплексная программа для освоения автоматизации тестирования от Trainee до Senior AQA</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Карточек</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Недель</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Примеров кода</span>
+                </div>
+            </div>
+            <a href="#modules" class="cta-button">Начать обучение</a>
+        </div>
+        <div class="hero-visual">
+            <div class="code-preview">
+                <div class="code-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="filename">test_login.py</span>
+                </div>
+                <pre><code><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By
+
+<span class="keyword">class</span> <span class="class-name">TestLogin</span>:
+    <span class="keyword">def</span> <span class="function">test_successful_login</span>(<span class="param">self</span>):
+        driver = webdriver.Chrome()
+        driver.get(<span class="string">"https://example.com"</span>)
+        
+        driver.find_element(By.ID, <span class="string">"username"</span>).send_keys(<span class="string">"test"</span>)
+        driver.find_element(By.ID, <span class="string">"password"</span>).send_keys(<span class="string">"pass123"</span>)
+        driver.find_element(By.CSS_SELECTOR, <span class="string">"[data-testid='login-btn']"</span>).click()
+        
+        <span class="keyword">assert</span> <span class="string">"Dashboard"</span> <span class="keyword">in</span> driver.title</code></pre>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Learning Path Section -->
+        <section class="learning-path" id="modules">
+            <h2>📚 Путь обучения</h2>
+            <p class="section-subtitle">От основ Python до профессиональной автоматизации</p>
+            
+            <div class="modules-grid">
+                <!-- Module 1: Variables & Types -->
+                <div class="module-card" data-module="1">
+                    <div class="module-header">
+                        <span class="module-icon">📦</span>
+                        <span class="module-number">Модуль 1</span>
+                        <span class="module-difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Переменные и типы данных</h3>
+                    <p>Основы работы с данными в Python: переменные, типы, преобразования</p>
+                    <ul class="module-topics">
+                        <li>Именование переменных (PEP8)</li>
+                        <li>Динамическая типизация</li>
+                        <li>int, float, str, bool</li>
+                        <li>list, tuple, dict, set</li>
+                        <li>Type hints для автотестов</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/50 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(1)">Изучить</button>
+                </div>
+
+                <!-- Module 2: Operators -->
+                <div class="module-card" data-module="2">
+                    <div class="module-header">
+                        <span class="module-icon">⚡</span>
+                        <span class="module-number">Модуль 2</span>
+                        <span class="module-difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Операторы</h3>
+                    <p>Арифметические, логические и операторы сравнения</p>
+                    <ul class="module-topics">
+                        <li>Арифметические операторы (+, -, *, /, //, %, **)</li>
+                        <li>Операторы сравнения (==, !=, <, >)</li>
+                        <li>Логические операторы (and, or, not)</li>
+                        <li>Операторы in, is</li>
+                        <li>Приоритет операторов</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/30 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(2)">Изучить</button>
+                </div>
+
+                <!-- Module 3: Conditions -->
+                <div class="module-card" data-module="3">
+                    <div class="module-header">
+                        <span class="module-icon">🔀</span>
+                        <span class="module-number">Модуль 3</span>
+                        <span class="module-difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Условия и ветвление</h3>
+                    <p>Управление потоком выполнения программы</p>
+                    <ul class="module-topics">
+                        <li>if, elif, else</li>
+                        <li>Тернарный оператор</li>
+                        <li>match-case (Python 3.10+)</li>
+                        <li>Guard clauses</li>
+                        <li>Truthy и Falsy значения</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/30 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(3)">Изучить</button>
+                </div>
+
+                <!-- Module 4: Loops -->
+                <div class="module-card" data-module="4">
+                    <div class="module-header">
+                        <span class="module-icon">🔄</span>
+                        <span class="module-number">Модуль 4</span>
+                        <span class="module-difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Циклы</h3>
+                    <p>Итерации и обработка коллекций</p>
+                    <ul class="module-topics">
+                        <li>for и range()</li>
+                        <li>while циклы</li>
+                        <li>break, continue, else</li>
+                        <li>enumerate(), zip()</li>
+                        <li>itertools для тестов</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/50 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(4)">Изучить</button>
+                </div>
+
+                <!-- Module 5: Functions -->
+                <div class="module-card" data-module="5">
+                    <div class="module-header">
+                        <span class="module-icon">🎯</span>
+                        <span class="module-number">Модуль 5</span>
+                        <span class="module-difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>Функции</h3>
+                    <p>Создание переиспользуемого кода</p>
+                    <ul class="module-topics">
+                        <li>def, return, docstrings</li>
+                        <li>*args, **kwargs</li>
+                        <li>lambda функции</li>
+                        <li>Декораторы</li>
+                        <li>Замыкания и scope</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/25 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(5)">Изучить</button>
+                </div>
+
+                <!-- Module 6: Comprehensions -->
+                <div class="module-card" data-module="6">
+                    <div class="module-header">
+                        <span class="module-icon">✨</span>
+                        <span class="module-number">Модуль 6</span>
+                        <span class="module-difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>List Comprehension</h3>
+                    <p>Pythonic способ создания коллекций</p>
+                    <ul class="module-topics">
+                        <li>List comprehension</li>
+                        <li>Dict comprehension</li>
+                        <li>Set comprehension</li>
+                        <li>Generator expressions</li>
+                        <li>Вложенные comprehensions</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/15 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(6)">Изучить</button>
+                </div>
+
+                <!-- Module 7: Selenium Basics -->
+                <div class="module-card featured" data-module="7">
+                    <div class="module-header">
+                        <span class="module-icon">🌐</span>
+                        <span class="module-number">Модуль 7</span>
+                        <span class="module-difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>Selenium WebDriver</h3>
+                    <p>Основы UI автоматизации</p>
+                    <ul class="module-topics">
+                        <li>WebDriver API</li>
+                        <li>Локаторы (ID, CSS, XPath)</li>
+                        <li>Взаимодействие с элементами</li>
+                        <li>Waits (Implicit/Explicit)</li>
+                        <li>Screenshots и логирование</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/60 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(7)">Изучить</button>
+                </div>
+
+                <!-- Module 8: Page Object -->
+                <div class="module-card featured" data-module="8">
+                    <div class="module-header">
+                        <span class="module-icon">🏗️</span>
+                        <span class="module-number">Модуль 8</span>
+                        <span class="module-difficulty advanced">Advanced</span>
+                    </div>
+                    <h3>Page Object Model</h3>
+                    <p>Архитектура тестового фреймворка</p>
+                    <ul class="module-topics">
+                        <li>BasePage класс</li>
+                        <li>Page Objects</li>
+                        <li>Component Objects</li>
+                        <li>Fluent Interface</li>
+                        <li>SOLID принципы</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="progress-bar" style="--progress: 0%"></div>
+                        <span>0/40 карточек</span>
+                    </div>
+                    <button class="module-btn" onclick="openModule(8)">Изучить</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Section -->
+        <section class="quick-reference" id="practice">
+            <h2>⚡ Быстрая справка</h2>
+            <p class="section-subtitle">Часто используемые конструкции для автотестов</p>
+
+            <div class="reference-tabs">
+                <button class="tab-btn active" onclick="showTab('variables')">Переменные</button>
+                <button class="tab-btn" onclick="showTab('loops')">Циклы</button>
+                <button class="tab-btn" onclick="showTab('functions')">Функции</button>
+                <button class="tab-btn" onclick="showTab('selenium')">Selenium</button>
+                <button class="tab-btn" onclick="showTab('assertions')">Assertions</button>
+            </div>
+
+            <div class="tab-content active" id="variables">
+                <div class="code-example">
+                    <h4>Переменные и типы данных</h4>
+                    <pre><code><span class="comment"># Именование по PEP8 (snake_case)</span>
+user_name = <span class="string">"test_user"</span>
+max_retry_count = <span class="number">3</span>
+is_logged_in = <span class="keyword">True</span>
+
+<span class="comment"># Типы данных</span>
+test_id: <span class="type">int</span> = <span class="number">42</span>
+test_name: <span class="type">str</span> = <span class="string">"Login Test"</span>
+test_data: <span class="type">list</span> = [<span class="string">"user1"</span>, <span class="string">"user2"</span>, <span class="string">"user3"</span>]
+config: <span class="type">dict</span> = {<span class="string">"timeout"</span>: <span class="number">10</span>, <span class="string">"browser"</span>: <span class="string">"chrome"</span>}
+
+<span class="comment"># Константы (UPPER_CASE)</span>
+BASE_URL = <span class="string">"https://example.com"</span>
+MAX_WAIT_TIME = <span class="number">30</span>
+
+<span class="comment"># Проверка типа</span>
+<span class="keyword">if</span> <span class="builtin">isinstance</span>(test_id, <span class="type">int</span>):
+    <span class="builtin">print</span>(<span class="string">"Valid test ID"</span>)</code></pre>
+                </div>
+                <div class="tips-box">
+                    <h5>💡 Советы для автотестов:</h5>
+                    <ul>
+                        <li>Используйте <code>snake_case</code> для переменных и функций</li>
+                        <li>Константы выносите в отдельный файл <code>constants.py</code></li>
+                        <li>Type hints улучшают читаемость и IDE-поддержку</li>
+                        <li>Избегайте магических чисел — используйте константы</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content" id="loops">
+                <div class="code-example">
+                    <h4>Циклы для автотестов</h4>
+                    <pre><code><span class="comment"># Итерация по тестовым данным</span>
+test_users = [<span class="string">"admin"</span>, <span class="string">"user"</span>, <span class="string">"guest"</span>]
+<span class="keyword">for</span> user <span class="keyword">in</span> test_users:
+    login_page.login(user, <span class="string">"password123"</span>)
+
+<span class="comment"># enumerate для индексов</span>
+<span class="keyword">for</span> i, test_case <span class="keyword">in</span> <span class="builtin">enumerate</span>(test_cases, start=<span class="number">1</span>):
+    <span class="builtin">print</span>(<span class="string">f"Running test </span>{i}<span class="string">: </span>{test_case.name}<span class="string">"</span>)
+
+<span class="comment"># zip для параллельной итерации</span>
+usernames = [<span class="string">"user1"</span>, <span class="string">"user2"</span>]
+passwords = [<span class="string">"pass1"</span>, <span class="string">"pass2"</span>]
+<span class="keyword">for</span> user, pwd <span class="keyword">in</span> <span class="builtin">zip</span>(usernames, passwords):
+    <span class="keyword">assert</span> login(user, pwd)
+
+<span class="comment"># while для polling/retry</span>
+attempts = <span class="number">0</span>
+<span class="keyword">while</span> attempts < MAX_RETRIES:
+    <span class="keyword">try</span>:
+        element = driver.find_element(By.ID, <span class="string">"dynamic-content"</span>)
+        <span class="keyword">break</span>
+    <span class="keyword">except</span> NoSuchElementException:
+        attempts += <span class="number">1</span>
+        time.sleep(<span class="number">1</span>)
+
+<span class="comment"># List comprehension для фильтрации</span>
+failed_tests = [t <span class="keyword">for</span> t <span class="keyword">in</span> results <span class="keyword">if</span> t.status == <span class="string">"FAILED"</span>]</code></pre>
+                </div>
+            </div>
+
+            <div class="tab-content" id="functions">
+                <div class="code-example">
+                    <h4>Функции для автотестов</h4>
+                    <pre><code><span class="comment"># Функция с type hints</span>
+<span class="keyword">def</span> <span class="function">wait_for_element</span>(
+    driver: WebDriver,
+    locator: <span class="type">tuple</span>,
+    timeout: <span class="type">int</span> = <span class="number">10</span>
+) -> WebElement:
+    <span class="string">"""Ожидание видимости элемента."""</span>
+    <span class="keyword">return</span> WebDriverWait(driver, timeout).until(
+        EC.visibility_of_element_located(locator)
+    )
+
+<span class="comment"># *args для гибких параметров</span>
+<span class="keyword">def</span> <span class="function">fill_form</span>(*fields: <span class="type">tuple</span>):
+    <span class="keyword">for</span> locator, value <span class="keyword">in</span> fields:
+        driver.find_element(*locator).send_keys(value)
+
+<span class="comment"># **kwargs для конфигурации</span>
+<span class="keyword">def</span> <span class="function">create_user</span>(**user_data):
+    <span class="keyword">return</span> api.post(<span class="string">"/users"</span>, json=user_data)
+
+<span class="comment"># Декоратор для retry</span>
+<span class="keyword">def</span> <span class="function">retry</span>(max_attempts=<span class="number">3</span>):
+    <span class="keyword">def</span> <span class="function">decorator</span>(func):
+        <span class="keyword">def</span> <span class="function">wrapper</span>(*args, **kwargs):
+            <span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="builtin">range</span>(max_attempts):
+                <span class="keyword">try</span>:
+                    <span class="keyword">return</span> func(*args, **kwargs)
+                <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+                    <span class="keyword">if</span> attempt == max_attempts - <span class="number">1</span>:
+                        <span class="keyword">raise</span>
+        <span class="keyword">return</span> wrapper
+    <span class="keyword">return</span> decorator
+
+<span class="decorator">@retry</span>(max_attempts=<span class="number">3</span>)
+<span class="keyword">def</span> <span class="function">flaky_action</span>():
+    <span class="comment"># Нестабильное действие</span>
+    <span class="keyword">pass</span></code></pre>
+                </div>
+            </div>
+
+            <div class="tab-content" id="selenium">
+                <div class="code-example">
+                    <h4>Selenium WebDriver</h4>
+                    <pre><code><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By
+<span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait
+<span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC
+
+<span class="comment"># Инициализация драйвера</span>
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get(<span class="string">"https://example.com"</span>)
+
+<span class="comment"># Локаторы (приоритет выбора)</span>
+<span class="comment"># 1. data-testid (лучший)</span>
+btn = driver.find_element(By.CSS_SELECTOR, <span class="string">"[data-testid='submit-btn']"</span>)
+<span class="comment"># 2. ID</span>
+input_field = driver.find_element(By.ID, <span class="string">"username"</span>)
+<span class="comment"># 3. CSS Selector</span>
+link = driver.find_element(By.CSS_SELECTOR, <span class="string">".nav-menu a.active"</span>)
+<span class="comment"># 4. XPath (крайний случай)</span>
+text_el = driver.find_element(By.XPATH, <span class="string">"//button[contains(text(),'Submit')]"</span>)
+
+<span class="comment"># Explicit Wait (правильно)</span>
+element = WebDriverWait(driver, <span class="number">10</span>).until(
+    EC.element_to_be_clickable((By.ID, <span class="string">"submit"</span>))
+)
+
+<span class="comment"># Действия с элементами</span>
+element.click()
+element.send_keys(<span class="string">"test text"</span>)
+element.clear()
+text = element.text
+value = element.get_attribute(<span class="string">"value"</span>)
+
+<span class="comment"># Скриншот при ошибке</span>
+driver.save_screenshot(<span class="string">"error_screenshot.png"</span>)
+
+<span class="comment"># Закрытие</span>
+driver.quit()</code></pre>
+                </div>
+            </div>
+
+            <div class="tab-content" id="assertions">
+                <div class="code-example">
+                    <h4>Assertions в тестах</h4>
+                    <pre><code><span class="keyword">import</span> pytest
+
+<span class="comment"># Базовые assertions</span>
+<span class="keyword">assert</span> actual == expected
+<span class="keyword">assert</span> actual != unexpected
+<span class="keyword">assert</span> value <span class="keyword">is</span> <span class="keyword">True</span>
+<span class="keyword">assert</span> value <span class="keyword">is</span> <span class="keyword">None</span>
+
+<span class="comment"># С сообщением об ошибке</span>
+<span class="keyword">assert</span> status_code == <span class="number">200</span>, <span class="string">f"Expected 200, got </span>{status_code}<span class="string">"</span>
+
+<span class="comment"># Проверка коллекций</span>
+<span class="keyword">assert</span> <span class="string">"error"</span> <span class="keyword">in</span> response.text
+<span class="keyword">assert</span> <span class="builtin">len</span>(items) == <span class="number">5</span>
+<span class="keyword">assert</span> <span class="builtin">all</span>(item.is_valid <span class="keyword">for</span> item <span class="keyword">in</span> items)
+<span class="keyword">assert</span> <span class="builtin">any</span>(user.is_admin <span class="keyword">for</span> user <span class="keyword">in</span> users)
+
+<span class="comment"># pytest assertions</span>
+pytest.raises(ValueError, func_that_raises)
+
+<span class="keyword">with</span> pytest.raises(HTTPError) <span class="keyword">as</span> exc_info:
+    api.get(<span class="string">"/invalid"</span>)
+<span class="keyword">assert</span> exc_info.value.status_code == <span class="number">404</span>
+
+<span class="comment"># Soft assertions (pytest-check)</span>
+<span class="keyword">from</span> pytest_check <span class="keyword">import</span> check
+<span class="keyword">with</span> check:
+    <span class="keyword">assert</span> response.status == <span class="number">200</span>
+    <span class="keyword">assert</span> response.data[<span class="string">"name"</span>] == <span class="string">"Test"</span>
+    <span class="keyword">assert</span> response.headers[<span class="string">"Content-Type"</span>] == <span class="string">"application/json"</span></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flashcards Section -->
+        <section class="flashcards-section">
+            <h2>🎴 Flashcard тренажёр</h2>
+            <p class="section-subtitle">Проверь свои знания</p>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <span class="card-label">Вопрос</span>
+                            <p id="question">Что такое переменная в Python?</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <span class="card-label">Ответ</span>
+                            <p id="answer">Именованная область памяти для хранения данных. Пример: <code>name = "Test"</code> создаёт переменную name со значением "Test"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard-controls">
+                    <button class="control-btn" onclick="prevCard()">← Назад</button>
+                    <button class="control-btn flip-btn" onclick="flipCard()">Перевернуть</button>
+                    <button class="control-btn" onclick="nextCard()">Вперёд →</button>
+                </div>
+                
+                <div class="card-counter">
+                    <span id="currentCard">1</span> / <span id="totalCards">20</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="resources-section" id="resources">
+            <h2>📚 Ресурсы</h2>
+            <p class="section-subtitle">Дополнительные материалы для изучения</p>
+
+            <div class="resources-grid">
+                <a href="https://docs.python.org/3/" class="resource-card" target="_blank">
+                    <span class="resource-icon">📖</span>
+                    <h4>Python Docs</h4>
+                    <p>Официальная документация Python</p>
+                </a>
+                <a href="https://selenium-python.readthedocs.io/" class="resource-card" target="_blank">
+                    <span class="resource-icon">🌐</span>
+                    <h4>Selenium Docs</h4>
+                    <p>Документация Selenium для Python</p>
+                </a>
+                <a href="https://docs.pytest.org/" class="resource-card" target="_blank">
+                    <span class="resource-icon">✅</span>
+                    <h4>pytest</h4>
+                    <p>Тестовый фреймворк для Python</p>
+                </a>
+                <a href="https://peps.python.org/pep-0008/" class="resource-card" target="_blank">
+                    <span class="resource-icon">📝</span>
+                    <h4>PEP 8</h4>
+                    <p>Style Guide для Python кода</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Study Schedule -->
+        <section class="schedule-section">
+            <h2>📅 План обучения</h2>
+            <div class="schedule-table">
+                <div class="schedule-row header">
+                    <span>Неделя</span>
+                    <span>Тема</span>
+                    <span>Карточек</span>
+                    <span>Практика</span>
+                </div>
+                <div class="schedule-row">
+                    <span>1-2</span>
+                    <span>Переменные, типы, операторы</span>
+                    <span>80</span>
+                    <span>Калькулятор на Python</span>
+                </div>
+                <div class="schedule-row">
+                    <span>3-4</span>
+                    <span>Условия, циклы</span>
+                    <span>80</span>
+                    <span>Валидатор данных</span>
+                </div>
+                <div class="schedule-row">
+                    <span>5-6</span>
+                    <span>Функции, comprehensions</span>
+                    <span>40</span>
+                    <span>Утилиты для тестов</span>
+                </div>
+                <div class="schedule-row">
+                    <span>7-8</span>
+                    <span>Selenium, Page Object</span>
+                    <span>100</span>
+                    <span>Первый UI-тест</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>🐍 Python for Selenium | Автоматизация тестирования</p>
+        <p class="footer-sub">Создано для изучения автоматизации QA</p>
+    </footer>
+
+    <!-- Module Modal -->
+    <div class="modal" id="moduleModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle">Модуль 1: Переменные и типы данных</h2>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

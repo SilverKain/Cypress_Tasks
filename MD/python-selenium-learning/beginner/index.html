@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python с нуля | Для начинающих</title>
+    <style>
+        /* ===== Переменные ===== */
+        :root {
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-code: #0d1117;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        /* ===== Базовые стили ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ===== Навигация ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--bg-card);
+        }
+
+        /* ===== Главный контент ===== */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        /* ===== Заголовок ===== */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* ===== Урок ===== */
+        .lesson {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .lesson h2 {
+            font-size: 1.5rem;
+        }
+
+        .lesson p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .lesson strong {
+            color: var(--text);
+        }
+
+        /* ===== Блок кода ===== */
+        .code-block {
+            background: var(--bg-code);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .code-header {
+            background: rgba(0,0,0,0.3);
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-title {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-light);
+        }
+
+        pre {
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        /* Подсветка синтаксиса */
+        .comment { color: #6a9955; }
+        .keyword { color: #c586c0; }
+        .string { color: #ce9178; }
+        .number { color: #b5cea8; }
+        .function { color: #dcdcaa; }
+        .variable { color: #9cdcfe; }
+        .output { color: #6a9955; font-style: italic; }
+
+        /* ===== Результат ===== */
+        .result {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .result-title {
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ===== Важно ===== */
+        .important {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .important-title {
+            color: var(--warning);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== Задание ===== */
+        .task {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .task-icon {
+            font-size: 1.5rem;
+        }
+
+        .task h3 {
+            color: var(--primary-light);
+        }
+
+        .task p {
+            margin-bottom: 1rem;
+        }
+
+        .task-input {
+            width: 100%;
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .task-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .task-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .task-result.correct {
+            display: block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .task-result.incorrect {
+            display: block;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        /* ===== Таблица ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-code);
+            color: var(--primary-light);
+        }
+
+        td code {
+            background: var(--bg-code);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* ===== Список ===== */
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        li strong {
+            color: var(--text);
+        }
+
+        /* ===== Навигация между уроками ===== */
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .lesson-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .lesson-nav a:hover {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* ===== Прогресс ===== */
+        .progress-bar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s;
+            z-index: 99;
+        }
+
+        /* ===== Футер ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        /* ===== Адаптивность ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            main {
+                padding: 5rem 1rem 2rem;
+            }
+            
+            .lesson {
+                padding: 1.5rem;
+            }
+            
+            pre {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <nav>
+        <div class="logo">🐍 Python с нуля</div>
+        <ul class="nav-links">
+            <li><a href="#lesson1">1. print()</a></li>
+            <li><a href="#lesson2">2. Переменные</a></li>
+            <li><a href="#lesson3">3. Типы</a></li>
+            <li><a href="#lesson4">4. Математика</a></li>
+            <li><a href="#lesson5">5. Условия</a></li>
+            <li><a href="#lesson6">6. Циклы</a></li>
+            <li><a href="#lesson7">7. Списки</a></li>
+            <li><a href="#lesson8">8. Функции</a></li>
+            <li><a href="#lesson9">9. Словари</a></li>
+            <li><a href="#lesson10">10. Строки</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Заголовок -->
+        <section class="hero">
+            <h1>Изучаем <span>Python</span> с нуля</h1>
+            <p>Простое и понятное руководство для начинающих. Никакого сложного кода — только основы!</p>
+        </section>
+
+        <!-- ==================== УРОК 1 ==================== -->
+        <section class="lesson" id="lesson1">
+            <div class="lesson-header">
+                <div class="lesson-number">1</div>
+                <h2>Что такое Python и первая программа</h2>
+            </div>
+            
+            <p><strong>Python</strong> — это язык программирования. Программа — это набор инструкций, которые компьютер выполняет по порядку.</p>
+            
+            <p>Давайте напишем первую программу! Она выведет текст на экран:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Первая программа</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="function">print</span>(<span class="string">"Привет, мир!"</span>)</pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>Привет, мир!</code>
+            </div>
+
+            <p><strong>Что здесь происходит?</strong></p>
+            <ul>
+                <li><code>print()</code> — это команда, которая выводит текст на экран</li>
+                <li>Текст пишется в кавычках: <code>"Привет, мир!"</code></li>
+                <li>Кавычки могут быть двойными <code>"текст"</code> или одинарными <code>'текст'</code></li>
+            </ul>
+
+            <div class="important">
+                <div class="important-title">💡 Запомни!</div>
+                <p><code>print()</code> — твой лучший друг для отладки. Всегда можно вывести что угодно на экран, чтобы понять, что происходит в программе.</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Ещё примеры print()</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="function">print</span>(<span class="string">"Меня зовут Анна"</span>)
+<span class="function">print</span>(<span class="string">'Мне 25 лет'</span>)
+<span class="function">print</span>(<span class="string">"Я учу Python!"</span>)
+
+<span class="comment"># Можно вывести число без кавычек</span>
+<span class="function">print</span>(<span class="number">42</span>)
+<span class="function">print</span>(<span class="number">3.14</span>)</pre>
+            </div>
+
+            <!-- Задание 1 -->
+            <div class="task" id="task1">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 1: Напиши свою первую программу</h3>
+                </div>
+                <p>Напиши команду, которая выведет на экран твоё имя. Например: <code>Привет, Иван!</code></p>
+                <textarea class="task-input" id="task1-input" placeholder='Напиши код здесь, например: print("Привет, Иван!")'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask1()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint1()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task1-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 2 ==================== -->
+        <section class="lesson" id="lesson2">
+            <div class="lesson-header">
+                <div class="lesson-number">2</div>
+                <h2>Переменные — коробки для данных</h2>
+            </div>
+            
+            <p><strong>Переменная</strong> — это как коробка с подписью, в которую можно положить что-то. Например, число или текст.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Создание переменных</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Создаём переменную "имя" и кладём туда текст</span>
+<span class="variable">имя</span> = <span class="string">"Анна"</span>
+
+<span class="comment"># Создаём переменную "возраст" и кладём туда число</span>
+<span class="variable">возраст</span> = <span class="number">25</span>
+
+<span class="comment"># Выводим на экран</span>
+<span class="function">print</span>(<span class="variable">имя</span>)      <span class="output"># Выведет: Анна</span>
+<span class="function">print</span>(<span class="variable">возраст</span>)  <span class="output"># Выведет: 25</span></pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>Анна<br>25</code>
+            </div>
+
+            <p><strong>Правила именования переменных:</strong></p>
+            <ul>
+                <li>✅ Можно: буквы, цифры, нижнее подчёркивание: <code>user_name</code>, <code>age2</code></li>
+                <li>❌ Нельзя начинать с цифры: <code>2name</code> — ошибка!</li>
+                <li>❌ Нельзя использовать пробелы: <code>user name</code> — ошибка!</li>
+                <li>💡 Рекомендуется: <code>snake_case</code> — слова через нижнее подчёркивание</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Хорошие названия переменных</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># ✅ Хорошо — понятно, что хранится</span>
+<span class="variable">user_name</span> = <span class="string">"Иван"</span>
+<span class="variable">user_age</span> = <span class="number">30</span>
+<span class="variable">is_student</span> = <span class="keyword">True</span>
+
+<span class="comment"># ❌ Плохо — непонятно</span>
+<span class="variable">x</span> = <span class="string">"Иван"</span>
+<span class="variable">a</span> = <span class="number">30</span>
+<span class="variable">flag</span> = <span class="keyword">True</span></pre>
+            </div>
+
+            <h3>Изменение переменных</h3>
+            <p>Значение переменной можно менять:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Изменение значения</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">счёт</span> = <span class="number">0</span>
+<span class="function">print</span>(<span class="variable">счёт</span>)  <span class="output"># 0</span>
+
+<span class="variable">счёт</span> = <span class="number">10</span>
+<span class="function">print</span>(<span class="variable">счёт</span>)  <span class="output"># 10</span>
+
+<span class="variable">счёт</span> = <span class="variable">счёт</span> + <span class="number">5</span>
+<span class="function">print</span>(<span class="variable">счёт</span>)  <span class="output"># 15</span></pre>
+            </div>
+
+            <!-- Задание 2 -->
+            <div class="task" id="task2">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 2: Создай переменные</h3>
+                </div>
+                <p>Создай две переменные:</p>
+                <ul>
+                    <li><code>city</code> — название твоего города</li>
+                    <li><code>year</code> — текущий год (число)</li>
+                </ul>
+                <p>И выведи их на экран с помощью <code>print()</code></p>
+                <textarea class="task-input" id="task2-input" placeholder='city = "Москва"&#10;year = 2026&#10;print(city)&#10;print(year)'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask2()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint2()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task2-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 3 ==================== -->
+        <section class="lesson" id="lesson3">
+            <div class="lesson-header">
+                <div class="lesson-number">3</div>
+                <h2>Типы данных — какие бывают данные</h2>
+            </div>
+            
+            <p>В Python есть разные <strong>типы данных</strong>. Вот основные:</p>
+
+            <table>
+                <tr>
+                    <th>Тип</th>
+                    <th>Описание</th>
+                    <th>Пример</th>
+                </tr>
+                <tr>
+                    <td><code>str</code></td>
+                    <td>Текст (строка)</td>
+                    <td><code>"Привет"</code>, <code>'Python'</code></td>
+                </tr>
+                <tr>
+                    <td><code>int</code></td>
+                    <td>Целое число</td>
+                    <td><code>42</code>, <code>-10</code>, <code>0</code></td>
+                </tr>
+                <tr>
+                    <td><code>float</code></td>
+                    <td>Дробное число</td>
+                    <td><code>3.14</code>, <code>-0.5</code></td>
+                </tr>
+                <tr>
+                    <td><code>bool</code></td>
+                    <td>Да/Нет (логический)</td>
+                    <td><code>True</code>, <code>False</code></td>
+                </tr>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Примеры типов данных</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Строка (текст)</span>
+<span class="variable">name</span> = <span class="string">"Анна"</span>
+
+<span class="comment"># Целое число</span>
+<span class="variable">age</span> = <span class="number">25</span>
+
+<span class="comment"># Дробное число</span>
+<span class="variable">height</span> = <span class="number">1.65</span>
+
+<span class="comment"># Логическое значение (да/нет)</span>
+<span class="variable">is_student</span> = <span class="keyword">True</span>
+<span class="variable">has_car</span> = <span class="keyword">False</span>
+
+<span class="comment"># Проверить тип можно функцией type()</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="variable">name</span>))    <span class="output"># &lt;class 'str'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="variable">age</span>))     <span class="output"># &lt;class 'int'&gt;</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="variable">height</span>))  <span class="output"># &lt;class 'float'&gt;</span></pre>
+            </div>
+
+            <h3>Преобразование типов</h3>
+            <p>Иногда нужно превратить один тип в другой:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Преобразование типов</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Строка в число</span>
+<span class="variable">text</span> = <span class="string">"42"</span>
+<span class="variable">number</span> = <span class="function">int</span>(<span class="variable">text</span>)  <span class="output"># Теперь это число 42</span>
+
+<span class="comment"># Число в строку</span>
+<span class="variable">age</span> = <span class="number">25</span>
+<span class="variable">age_text</span> = <span class="function">str</span>(<span class="variable">age</span>)  <span class="output"># Теперь это строка "25"</span>
+
+<span class="comment"># Зачем это нужно? Чтобы соединять текст с числами:</span>
+<span class="function">print</span>(<span class="string">"Мне "</span> + <span class="function">str</span>(<span class="variable">age</span>) + <span class="string">" лет"</span>)  <span class="output"># Мне 25 лет</span></pre>
+            </div>
+
+            <div class="important">
+                <div class="important-title">💡 Совет: f-строки</div>
+                <p>Есть способ проще соединять текст и переменные — <strong>f-строки</strong>:</p>
+                <code>print(f"Мне {age} лет")</code> — переменная подставляется автоматически!
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">f-строки — удобный способ</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">name</span> = <span class="string">"Иван"</span>
+<span class="variable">age</span> = <span class="number">30</span>
+
+<span class="comment"># Буква f перед кавычками, переменные в {}</span>
+<span class="function">print</span>(<span class="string">f"Привет, </span>{<span class="variable">name</span>}<span class="string">!"</span>)
+<span class="function">print</span>(<span class="string">f"Тебе </span>{<span class="variable">age</span>}<span class="string"> лет"</span>)
+<span class="function">print</span>(<span class="string">f"Через 5 лет тебе будет </span>{<span class="variable">age</span> + <span class="number">5</span>}<span class="string"> лет"</span>)</pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>Привет, Иван!<br>Тебе 30 лет<br>Через 5 лет тебе будет 35 лет</code>
+            </div>
+
+            <!-- Задание 3 -->
+            <div class="task" id="task3">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 3: Используй f-строку</h3>
+                </div>
+                <p>Создай переменные <code>name</code> и <code>age</code>, затем выведи фразу:</p>
+                <p><strong>"Меня зовут [имя], мне [возраст] лет"</strong> используя f-строку.</p>
+                <textarea class="task-input" id="task3-input" placeholder='name = "Анна"&#10;age = 25&#10;print(f"Меня зовут {name}, мне {age} лет")'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask3()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint3()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task3-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 4 ==================== -->
+        <section class="lesson" id="lesson4">
+            <div class="lesson-header">
+                <div class="lesson-number">4</div>
+                <h2>Математика и операции</h2>
+            </div>
+            
+            <p>Python умеет считать! Вот основные математические операции:</p>
+
+            <table>
+                <tr>
+                    <th>Операция</th>
+                    <th>Символ</th>
+                    <th>Пример</th>
+                    <th>Результат</th>
+                </tr>
+                <tr>
+                    <td>Сложение</td>
+                    <td><code>+</code></td>
+                    <td><code>5 + 3</code></td>
+                    <td><code>8</code></td>
+                </tr>
+                <tr>
+                    <td>Вычитание</td>
+                    <td><code>-</code></td>
+                    <td><code>10 - 4</code></td>
+                    <td><code>6</code></td>
+                </tr>
+                <tr>
+                    <td>Умножение</td>
+                    <td><code>*</code></td>
+                    <td><code>6 * 7</code></td>
+                    <td><code>42</code></td>
+                </tr>
+                <tr>
+                    <td>Деление</td>
+                    <td><code>/</code></td>
+                    <td><code>15 / 3</code></td>
+                    <td><code>5.0</code></td>
+                </tr>
+                <tr>
+                    <td>Целочисленное деление</td>
+                    <td><code>//</code></td>
+                    <td><code>17 // 5</code></td>
+                    <td><code>3</code></td>
+                </tr>
+                <tr>
+                    <td>Остаток от деления</td>
+                    <td><code>%</code></td>
+                    <td><code>17 % 5</code></td>
+                    <td><code>2</code></td>
+                </tr>
+                <tr>
+                    <td>Степень</td>
+                    <td><code>**</code></td>
+                    <td><code>2 ** 3</code></td>
+                    <td><code>8</code></td>
+                </tr>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Примеры вычислений</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Простые вычисления</span>
+<span class="function">print</span>(<span class="number">10</span> + <span class="number">5</span>)   <span class="output"># 15</span>
+<span class="function">print</span>(<span class="number">20</span> - <span class="number">8</span>)   <span class="output"># 12</span>
+<span class="function">print</span>(<span class="number">4</span> * <span class="number">7</span>)    <span class="output"># 28</span>
+<span class="function">print</span>(<span class="number">15</span> / <span class="number">3</span>)   <span class="output"># 5.0</span>
+
+<span class="comment"># Сохраняем результат в переменную</span>
+<span class="variable">a</span> = <span class="number">10</span>
+<span class="variable">b</span> = <span class="number">3</span>
+<span class="variable">сумма</span> = <span class="variable">a</span> + <span class="variable">b</span>
+<span class="function">print</span>(<span class="variable">сумма</span>)  <span class="output"># 13</span>
+
+<span class="comment"># Практический пример: расчёт стоимости</span>
+<span class="variable">цена</span> = <span class="number">100</span>
+<span class="variable">количество</span> = <span class="number">5</span>
+<span class="variable">скидка</span> = <span class="number">10</span>  <span class="comment"># процентов</span>
+
+<span class="variable">итого</span> = <span class="variable">цена</span> * <span class="variable">количество</span>
+<span class="variable">итого_со_скидкой</span> = <span class="variable">итого</span> - (<span class="variable">итого</span> * <span class="variable">скидка</span> / <span class="number">100</span>)
+
+<span class="function">print</span>(<span class="string">f"Итого: </span>{<span class="variable">итого</span>}<span class="string"> руб."</span>)            <span class="output"># 500 руб.</span>
+<span class="function">print</span>(<span class="string">f"Со скидкой: </span>{<span class="variable">итого_со_скидкой</span>}<span class="string"> руб."</span>)  <span class="output"># 450.0 руб.</span></pre>
+            </div>
+
+            <h3>Сокращённая запись</h3>
+            <p>Часто нужно изменить значение переменной. Есть короткий способ:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Сокращённые операции</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">счёт</span> = <span class="number">10</span>
+
+<span class="comment"># Длинный способ</span>
+<span class="variable">счёт</span> = <span class="variable">счёт</span> + <span class="number">5</span>   <span class="output"># теперь 15</span>
+
+<span class="comment"># Короткий способ (то же самое)</span>
+<span class="variable">счёт</span> += <span class="number">5</span>        <span class="output"># теперь 20</span>
+
+<span class="comment"># Работает со всеми операциями:</span>
+<span class="variable">x</span> = <span class="number">100</span>
+<span class="variable">x</span> -= <span class="number">20</span>   <span class="comment"># x = x - 20, теперь 80</span>
+<span class="variable">x</span> *= <span class="number">2</span>    <span class="comment"># x = x * 2, теперь 160</span>
+<span class="variable">x</span> /= <span class="number">4</span>    <span class="comment"># x = x / 4, теперь 40.0</span></pre>
+            </div>
+
+            <!-- Задание 4 -->
+            <div class="task" id="task4">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 4: Калькулятор</h3>
+                </div>
+                <p>Напиши программу, которая:</p>
+                <ol>
+                    <li>Создаёт переменные <code>a = 15</code> и <code>b = 4</code></li>
+                    <li>Вычисляет и выводит их сумму, разность, произведение</li>
+                </ol>
+                <textarea class="task-input" id="task4-input" placeholder='a = 15&#10;b = 4&#10;print(a + b)&#10;print(a - b)&#10;print(a * b)'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask4()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint4()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task4-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 5 ==================== -->
+        <section class="lesson" id="lesson5">
+            <div class="lesson-header">
+                <div class="lesson-number">5</div>
+                <h2>Условия — если... то...</h2>
+            </div>
+            
+            <p>Часто программе нужно принимать решения: <strong>если</strong> что-то истинно, <strong>то</strong> делаем одно, <strong>иначе</strong> — другое.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Простое условие if</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">age</span> = <span class="number">18</span>
+
+<span class="keyword">if</span> <span class="variable">age</span> >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"Ты совершеннолетний!"</span>)</pre>
+            </div>
+
+            <div class="important">
+                <div class="important-title">⚠️ Важно: отступы!</div>
+                <p>Код внутри <code>if</code> должен быть с отступом (4 пробела или Tab). Это показывает, что он относится к условию.</p>
+            </div>
+
+            <h3>if-else: если... иначе...</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Условие с else</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">age</span> = <span class="number">16</span>
+
+<span class="keyword">if</span> <span class="variable">age</span> >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"Ты совершеннолетний!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Ты ещё несовершеннолетний"</span>)</pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>Ты ещё несовершеннолетний</code>
+            </div>
+
+            <h3>if-elif-else: несколько условий</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Несколько условий</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">оценка</span> = <span class="number">85</span>
+
+<span class="keyword">if</span> <span class="variable">оценка</span> >= <span class="number">90</span>:
+    <span class="function">print</span>(<span class="string">"Отлично!"</span>)
+<span class="keyword">elif</span> <span class="variable">оценка</span> >= <span class="number">70</span>:
+    <span class="function">print</span>(<span class="string">"Хорошо!"</span>)
+<span class="keyword">elif</span> <span class="variable">оценка</span> >= <span class="number">50</span>:
+    <span class="function">print</span>(<span class="string">"Удовлетворительно"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Нужно подтянуться..."</span>)</pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>Хорошо!</code>
+            </div>
+
+            <h3>Операторы сравнения</h3>
+            
+            <table>
+                <tr>
+                    <th>Оператор</th>
+                    <th>Значение</th>
+                    <th>Пример</th>
+                </tr>
+                <tr>
+                    <td><code>==</code></td>
+                    <td>Равно</td>
+                    <td><code>x == 5</code></td>
+                </tr>
+                <tr>
+                    <td><code>!=</code></td>
+                    <td>Не равно</td>
+                    <td><code>x != 5</code></td>
+                </tr>
+                <tr>
+                    <td><code>></code></td>
+                    <td>Больше</td>
+                    <td><code>x > 5</code></td>
+                </tr>
+                <tr>
+                    <td><code><</code></td>
+                    <td>Меньше</td>
+                    <td><code>x < 5</code></td>
+                </tr>
+                <tr>
+                    <td><code>>=</code></td>
+                    <td>Больше или равно</td>
+                    <td><code>x >= 5</code></td>
+                </tr>
+                <tr>
+                    <td><code><=</code></td>
+                    <td>Меньше или равно</td>
+                    <td><code>x <= 5</code></td>
+                </tr>
+            </table>
+
+            <h3>Логические операторы: and, or, not</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Комбинирование условий</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">age</span> = <span class="number">25</span>
+<span class="variable">has_license</span> = <span class="keyword">True</span>
+
+<span class="comment"># and — оба условия должны быть True</span>
+<span class="keyword">if</span> <span class="variable">age</span> >= <span class="number">18</span> <span class="keyword">and</span> <span class="variable">has_license</span>:
+    <span class="function">print</span>(<span class="string">"Можешь водить машину"</span>)
+
+<span class="comment"># or — хотя бы одно условие True</span>
+<span class="variable">is_weekend</span> = <span class="keyword">True</span>
+<span class="variable">is_holiday</span> = <span class="keyword">False</span>
+
+<span class="keyword">if</span> <span class="variable">is_weekend</span> <span class="keyword">or</span> <span class="variable">is_holiday</span>:
+    <span class="function">print</span>(<span class="string">"Можно отдыхать!"</span>)
+
+<span class="comment"># not — отрицание</span>
+<span class="variable">is_raining</span> = <span class="keyword">False</span>
+
+<span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">is_raining</span>:
+    <span class="function">print</span>(<span class="string">"Можно идти гулять!"</span>)</pre>
+            </div>
+
+            <!-- Задание 5 -->
+            <div class="task" id="task5">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 5: Проверка пароля</h3>
+                </div>
+                <p>Напиши программу проверки пароля:</p>
+                <ol>
+                    <li>Создай переменную <code>password = "secret123"</code></li>
+                    <li>Создай переменную <code>user_input = "secret123"</code></li>
+                    <li>Если они равны — выведи "Доступ разрешён"</li>
+                    <li>Иначе — выведи "Неверный пароль"</li>
+                </ol>
+                <textarea class="task-input" id="task5-input" placeholder='password = "secret123"&#10;user_input = "secret123"&#10;&#10;if password == user_input:&#10;    print("Доступ разрешён")&#10;else:&#10;    print("Неверный пароль")'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask5()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint5()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task5-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 6 ==================== -->
+        <section class="lesson" id="lesson6">
+            <div class="lesson-header">
+                <div class="lesson-number">6</div>
+                <h2>Циклы — повторяем действия</h2>
+            </div>
+            
+            <p>Часто нужно выполнить одно и то же действие много раз. Для этого есть <strong>циклы</strong>.</p>
+
+            <h3>Цикл for — повтори N раз</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Простой цикл for</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Повторить 5 раз</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(<span class="string">"Привет!"</span>)
+
+<span class="comment"># i меняется от 0 до 4</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(<span class="variable">i</span>)  <span class="output"># 0, 1, 2, 3, 4</span></pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>0<br>1<br>2<br>3<br>4</code>
+            </div>
+
+            <h3>range() — диапазон чисел</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Варианты range()</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># range(конец) — от 0 до конец-1</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):
+    <span class="function">print</span>(<span class="variable">i</span>)  <span class="output"># 0, 1, 2</span>
+
+<span class="comment"># range(начало, конец) — от начало до конец-1</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(<span class="variable">i</span>)  <span class="output"># 1, 2, 3, 4, 5</span>
+
+<span class="comment"># range(начало, конец, шаг)</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>):
+    <span class="function">print</span>(<span class="variable">i</span>)  <span class="output"># 0, 2, 4, 6, 8</span></pre>
+            </div>
+
+            <h3>Цикл while — пока условие верно</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Цикл while</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">счётчик</span> = <span class="number">0</span>
+
+<span class="keyword">while</span> <span class="variable">счётчик</span> < <span class="number">5</span>:
+    <span class="function">print</span>(<span class="string">f"Счётчик: </span>{<span class="variable">счётчик</span>}<span class="string">"</span>)
+    <span class="variable">счётчик</span> += <span class="number">1</span>  <span class="comment"># Не забудь увеличить!</span>
+
+<span class="function">print</span>(<span class="string">"Цикл завершён"</span>)</pre>
+            </div>
+
+            <div class="important">
+                <div class="important-title">⚠️ Осторожно!</div>
+                <p>В цикле <code>while</code> обязательно меняй условие, иначе цикл будет бесконечным!</p>
+            </div>
+
+            <h3>break и continue</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Управление циклом</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># break — выйти из цикла</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    <span class="keyword">if</span> <span class="variable">i</span> == <span class="number">5</span>:
+        <span class="keyword">break</span>  <span class="comment"># Выходим из цикла</span>
+    <span class="function">print</span>(<span class="variable">i</span>)  <span class="output"># 0, 1, 2, 3, 4</span>
+
+<span class="comment"># continue — пропустить итерацию</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="keyword">if</span> <span class="variable">i</span> == <span class="number">2</span>:
+        <span class="keyword">continue</span>  <span class="comment"># Пропускаем 2</span>
+    <span class="function">print</span>(<span class="variable">i</span>)  <span class="output"># 0, 1, 3, 4</span></pre>
+            </div>
+
+            <!-- Задание 6 -->
+            <div class="task" id="task6">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 6: Таблица умножения</h3>
+                </div>
+                <p>Напиши цикл, который выводит таблицу умножения на 5:</p>
+                <p><code>5 x 1 = 5</code>, <code>5 x 2 = 10</code>, ... <code>5 x 10 = 50</code></p>
+                <textarea class="task-input" id="task6-input" placeholder='for i in range(1, 11):&#10;    print(f"5 x {i} = {5 * i}")'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask6()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint6()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task6-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 7 ==================== -->
+        <section class="lesson" id="lesson7">
+            <div class="lesson-header">
+                <div class="lesson-number">7</div>
+                <h2>Списки — хранение нескольких значений</h2>
+            </div>
+            
+            <p><strong>Список (list)</strong> — это коллекция элементов. Как коробка, в которой лежит много вещей.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Создание списка</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Список фруктов</span>
+<span class="variable">fruits</span> = [<span class="string">"яблоко"</span>, <span class="string">"банан"</span>, <span class="string">"апельсин"</span>]
+
+<span class="comment"># Список чисел</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="comment"># Пустой список</span>
+<span class="variable">empty</span> = []
+
+<span class="comment"># Вывести весь список</span>
+<span class="function">print</span>(<span class="variable">fruits</span>)  <span class="output"># ['яблоко', 'банан', 'апельсин']</span></pre>
+            </div>
+
+            <h3>Доступ к элементам</h3>
+            <p>Каждый элемент имеет <strong>индекс</strong> (номер). Нумерация начинается с 0!</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Индексы в списке</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">fruits</span> = [<span class="string">"яблоко"</span>, <span class="string">"банан"</span>, <span class="string">"апельсин"</span>]
+<span class="comment">#           0          1           2</span>
+
+<span class="function">print</span>(<span class="variable">fruits</span>[<span class="number">0</span>])  <span class="output"># яблоко (первый)</span>
+<span class="function">print</span>(<span class="variable">fruits</span>[<span class="number">1</span>])  <span class="output"># банан (второй)</span>
+<span class="function">print</span>(<span class="variable">fruits</span>[<span class="number">2</span>])  <span class="output"># апельсин (третий)</span>
+
+<span class="comment"># Отрицательные индексы — с конца</span>
+<span class="function">print</span>(<span class="variable">fruits</span>[<span class="number">-1</span>])  <span class="output"># апельсин (последний)</span></pre>
+            </div>
+
+            <h3>Изменение списка</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Операции со списком</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">fruits</span> = [<span class="string">"яблоко"</span>, <span class="string">"банан"</span>]
+
+<span class="comment"># Добавить элемент в конец</span>
+<span class="variable">fruits</span>.<span class="function">append</span>(<span class="string">"груша"</span>)
+<span class="function">print</span>(<span class="variable">fruits</span>)  <span class="output"># ['яблоко', 'банан', 'груша']</span>
+
+<span class="comment"># Изменить элемент</span>
+<span class="variable">fruits</span>[<span class="number">0</span>] = <span class="string">"манго"</span>
+<span class="function">print</span>(<span class="variable">fruits</span>)  <span class="output"># ['манго', 'банан', 'груша']</span>
+
+<span class="comment"># Удалить элемент</span>
+<span class="variable">fruits</span>.<span class="function">remove</span>(<span class="string">"банан"</span>)
+<span class="function">print</span>(<span class="variable">fruits</span>)  <span class="output"># ['манго', 'груша']</span>
+
+<span class="comment"># Длина списка</span>
+<span class="function">print</span>(<span class="function">len</span>(<span class="variable">fruits</span>))  <span class="output"># 2</span></pre>
+            </div>
+
+            <h3>Перебор списка циклом</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Цикл по списку</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">fruits</span> = [<span class="string">"яблоко"</span>, <span class="string">"банан"</span>, <span class="string">"апельсин"</span>]
+
+<span class="comment"># Простой перебор</span>
+<span class="keyword">for</span> <span class="variable">fruit</span> <span class="keyword">in</span> <span class="variable">fruits</span>:
+    <span class="function">print</span>(<span class="string">f"Я люблю </span>{<span class="variable">fruit</span>}<span class="string">"</span>)
+
+<span class="comment"># С индексом</span>
+<span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">fruit</span> <span class="keyword">in</span> <span class="function">enumerate</span>(<span class="variable">fruits</span>):
+    <span class="function">print</span>(<span class="string">f"</span>{<span class="variable">i</span> + <span class="number">1</span>}<span class="string">. </span>{<span class="variable">fruit</span>}<span class="string">"</span>)</pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>Я люблю яблоко<br>Я люблю банан<br>Я люблю апельсин<br><br>1. яблоко<br>2. банан<br>3. апельсин</code>
+            </div>
+
+            <!-- Задание 7 -->
+            <div class="task" id="task7">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 7: Список покупок</h3>
+                </div>
+                <p>Создай список покупок из 3 продуктов и выведи каждый элемент с номером:</p>
+                <p><code>1. Хлеб</code>, <code>2. Молоко</code>, <code>3. Яйца</code></p>
+                <textarea class="task-input" id="task7-input" placeholder='shopping = ["Хлеб", "Молоко", "Яйца"]&#10;&#10;for i, item in enumerate(shopping):&#10;    print(f"{i + 1}. {item}")'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask7()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint7()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task7-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 8 ==================== -->
+        <section class="lesson" id="lesson8">
+            <div class="lesson-header">
+                <div class="lesson-number">8</div>
+                <h2>Функции — свои команды</h2>
+            </div>
+            
+            <p><strong>Функция</strong> — это блок кода с именем, который можно вызывать много раз. Как собственная команда.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Создание функции</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Создаём функцию</span>
+<span class="keyword">def</span> <span class="function">say_hello</span>():
+    <span class="function">print</span>(<span class="string">"Привет!"</span>)
+
+<span class="comment"># Вызываем функцию</span>
+<span class="function">say_hello</span>()  <span class="output"># Привет!</span>
+<span class="function">say_hello</span>()  <span class="output"># Привет!</span></pre>
+            </div>
+
+            <div class="important">
+                <div class="important-title">💡 Зачем нужны функции?</div>
+                <ul>
+                    <li>Не повторять один и тот же код</li>
+                    <li>Разбить программу на понятные части</li>
+                    <li>Легче находить и исправлять ошибки</li>
+                </ul>
+            </div>
+
+            <h3>Функция с параметрами</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Параметры функции</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Функция принимает имя</span>
+<span class="keyword">def</span> <span class="function">greet</span>(<span class="variable">name</span>):
+    <span class="function">print</span>(<span class="string">f"Привет, </span>{<span class="variable">name</span>}<span class="string">!"</span>)
+
+<span class="function">greet</span>(<span class="string">"Анна"</span>)   <span class="output"># Привет, Анна!</span>
+<span class="function">greet</span>(<span class="string">"Иван"</span>)   <span class="output"># Привет, Иван!</span>
+
+<span class="comment"># Несколько параметров</span>
+<span class="keyword">def</span> <span class="function">add</span>(<span class="variable">a</span>, <span class="variable">b</span>):
+    <span class="function">print</span>(<span class="string">f"</span>{<span class="variable">a</span>}<span class="string"> + </span>{<span class="variable">b</span>}<span class="string"> = </span>{<span class="variable">a</span> + <span class="variable">b</span>}<span class="string">"</span>)
+
+<span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)  <span class="output"># 5 + 3 = 8</span></pre>
+            </div>
+
+            <h3>Возврат значения — return</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">return — вернуть результат</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Функция возвращает результат</span>
+<span class="keyword">def</span> <span class="function">multiply</span>(<span class="variable">a</span>, <span class="variable">b</span>):
+    <span class="variable">result</span> = <span class="variable">a</span> * <span class="variable">b</span>
+    <span class="keyword">return</span> <span class="variable">result</span>
+
+<span class="comment"># Сохраняем результат в переменную</span>
+<span class="variable">answer</span> = <span class="function">multiply</span>(<span class="number">4</span>, <span class="number">5</span>)
+<span class="function">print</span>(<span class="variable">answer</span>)  <span class="output"># 20</span>
+
+<span class="comment"># Можно использовать сразу</span>
+<span class="function">print</span>(<span class="function">multiply</span>(<span class="number">3</span>, <span class="number">7</span>))  <span class="output"># 21</span></pre>
+            </div>
+
+            <h3>Параметры по умолчанию</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Значения по умолчанию</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="keyword">def</span> <span class="function">greet</span>(<span class="variable">name</span>, <span class="variable">greeting</span>=<span class="string">"Привет"</span>):
+    <span class="function">print</span>(<span class="string">f"</span>{<span class="variable">greeting</span>}<span class="string">, </span>{<span class="variable">name</span>}<span class="string">!"</span>)
+
+<span class="function">greet</span>(<span class="string">"Анна"</span>)              <span class="output"># Привет, Анна!</span>
+<span class="function">greet</span>(<span class="string">"Иван"</span>, <span class="string">"Здравствуй"</span>)  <span class="output"># Здравствуй, Иван!</span></pre>
+            </div>
+
+            <!-- Задание 8 -->
+            <div class="task" id="task8">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 8: Калькулятор площади</h3>
+                </div>
+                <p>Создай функцию <code>area(width, height)</code>, которая возвращает площадь прямоугольника.</p>
+                <p>Вызови её с параметрами 5 и 3, выведи результат.</p>
+                <textarea class="task-input" id="task8-input" placeholder='def area(width, height):&#10;    return width * height&#10;&#10;result = area(5, 3)&#10;print(result)'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask8()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint8()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task8-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 9 ==================== -->
+        <section class="lesson" id="lesson9">
+            <div class="lesson-header">
+                <div class="lesson-number">9</div>
+                <h2>Словари — ключ и значение</h2>
+            </div>
+            
+            <p><strong>Словарь (dict)</strong> — это коллекция пар "ключ: значение". Как настоящий словарь: слово → перевод.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Создание словаря</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Словарь с информацией о человеке</span>
+<span class="variable">person</span> = {
+    <span class="string">"name"</span>: <span class="string">"Анна"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>,
+    <span class="string">"city"</span>: <span class="string">"Москва"</span>
+}
+
+<span class="comment"># Получить значение по ключу</span>
+<span class="function">print</span>(<span class="variable">person</span>[<span class="string">"name"</span>])  <span class="output"># Анна</span>
+<span class="function">print</span>(<span class="variable">person</span>[<span class="string">"age"</span>])   <span class="output"># 25</span></pre>
+            </div>
+
+            <h3>Изменение словаря</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Операции со словарём</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">person</span> = {<span class="string">"name"</span>: <span class="string">"Анна"</span>, <span class="string">"age"</span>: <span class="number">25</span>}
+
+<span class="comment"># Изменить значение</span>
+<span class="variable">person</span>[<span class="string">"age"</span>] = <span class="number">26</span>
+
+<span class="comment"># Добавить новый ключ</span>
+<span class="variable">person</span>[<span class="string">"email"</span>] = <span class="string">"anna@mail.ru"</span>
+
+<span class="comment"># Удалить ключ</span>
+<span class="keyword">del</span> <span class="variable">person</span>[<span class="string">"email"</span>]
+
+<span class="comment"># Проверить наличие ключа</span>
+<span class="keyword">if</span> <span class="string">"name"</span> <span class="keyword">in</span> <span class="variable">person</span>:
+    <span class="function">print</span>(<span class="string">"Имя есть в словаре"</span>)
+
+<span class="function">print</span>(<span class="variable">person</span>)  <span class="output"># {'name': 'Анна', 'age': 26}</span></pre>
+            </div>
+
+            <h3>Перебор словаря</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Цикл по словарю</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">person</span> = {<span class="string">"name"</span>: <span class="string">"Анна"</span>, <span class="string">"age"</span>: <span class="number">25</span>, <span class="string">"city"</span>: <span class="string">"Москва"</span>}
+
+<span class="comment"># Перебор ключей</span>
+<span class="keyword">for</span> <span class="variable">key</span> <span class="keyword">in</span> <span class="variable">person</span>:
+    <span class="function">print</span>(<span class="variable">key</span>)  <span class="output"># name, age, city</span>
+
+<span class="comment"># Перебор значений</span>
+<span class="keyword">for</span> <span class="variable">value</span> <span class="keyword">in</span> <span class="variable">person</span>.<span class="function">values</span>():
+    <span class="function">print</span>(<span class="variable">value</span>)  <span class="output"># Анна, 25, Москва</span>
+
+<span class="comment"># Перебор ключей и значений</span>
+<span class="keyword">for</span> <span class="variable">key</span>, <span class="variable">value</span> <span class="keyword">in</span> <span class="variable">person</span>.<span class="function">items</span>():
+    <span class="function">print</span>(<span class="string">f"</span>{<span class="variable">key</span>}<span class="string">: </span>{<span class="variable">value</span>}<span class="string">"</span>)</pre>
+            </div>
+
+            <div class="result">
+                <div class="result-title">📤 Результат:</div>
+                <code>name: Анна<br>age: 25<br>city: Москва</code>
+            </div>
+
+            <!-- Задание 9 -->
+            <div class="task" id="task9">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 9: Анкета</h3>
+                </div>
+                <p>Создай словарь с ключами: <code>name</code>, <code>age</code>, <code>hobby</code>.</p>
+                <p>Выведи все данные в формате: "Имя: ..., Возраст: ..., Хобби: ..."</p>
+                <textarea class="task-input" id="task9-input" placeholder='profile = {&#10;    "name": "Иван",&#10;    "age": 30,&#10;    "hobby": "программирование"&#10;}&#10;&#10;print(f"Имя: {profile[\"name\"]}, Возраст: {profile[\"age\"]}, Хобби: {profile[\"hobby\"]}")'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask9()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint9()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task9-result"></div>
+            </div>
+        </section>
+
+        <!-- ==================== УРОК 10 ==================== -->
+        <section class="lesson" id="lesson10">
+            <div class="lesson-header">
+                <div class="lesson-number">10</div>
+                <h2>Работа со строками</h2>
+            </div>
+            
+            <p>Строки в Python имеют много полезных методов для обработки текста.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Основные методы строк</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">text</span> = <span class="string">"  Привет, Мир!  "</span>
+
+<span class="comment"># Убрать пробелы по краям</span>
+<span class="function">print</span>(<span class="variable">text</span>.<span class="function">strip</span>())   <span class="output"># "Привет, Мир!"</span>
+
+<span class="comment"># Верхний/нижний регистр</span>
+<span class="function">print</span>(<span class="variable">text</span>.<span class="function">upper</span>())   <span class="output"># "  ПРИВЕТ, МИР!  "</span>
+<span class="function">print</span>(<span class="variable">text</span>.<span class="function">lower</span>())   <span class="output"># "  привет, мир!  "</span>
+
+<span class="comment"># Замена</span>
+<span class="variable">text2</span> = <span class="string">"Привет, Мир!"</span>
+<span class="function">print</span>(<span class="variable">text2</span>.<span class="function">replace</span>(<span class="string">"Мир"</span>, <span class="string">"Python"</span>))  <span class="output"># "Привет, Python!"</span>
+
+<span class="comment"># Длина строки</span>
+<span class="function">print</span>(<span class="function">len</span>(<span class="variable">text2</span>))  <span class="output"># 12</span></pre>
+            </div>
+
+            <h3>Проверки строк</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Проверки</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">text</span> = <span class="string">"Python"</span>
+
+<span class="comment"># Начинается/заканчивается на...</span>
+<span class="function">print</span>(<span class="variable">text</span>.<span class="function">startswith</span>(<span class="string">"Py"</span>))  <span class="output"># True</span>
+<span class="function">print</span>(<span class="variable">text</span>.<span class="function">endswith</span>(<span class="string">"on"</span>))    <span class="output"># True</span>
+
+<span class="comment"># Содержит подстроку</span>
+<span class="function">print</span>(<span class="string">"th"</span> <span class="keyword">in</span> <span class="variable">text</span>)  <span class="output"># True</span>
+<span class="function">print</span>(<span class="string">"xy"</span> <span class="keyword">in</span> <span class="variable">text</span>)  <span class="output"># False</span>
+
+<span class="comment"># Только цифры/буквы</span>
+<span class="function">print</span>(<span class="string">"123"</span>.<span class="function">isdigit</span>())   <span class="output"># True</span>
+<span class="function">print</span>(<span class="string">"abc"</span>.<span class="function">isalpha</span>())   <span class="output"># True</span></pre>
+            </div>
+
+            <h3>Разделение и объединение</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">split() и join()</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="comment"># Разделить строку на список</span>
+<span class="variable">sentence</span> = <span class="string">"Я учу Python"</span>
+<span class="variable">words</span> = <span class="variable">sentence</span>.<span class="function">split</span>()
+<span class="function">print</span>(<span class="variable">words</span>)  <span class="output"># ['Я', 'учу', 'Python']</span>
+
+<span class="comment"># Разделить по запятой</span>
+<span class="variable">data</span> = <span class="string">"яблоко,банан,груша"</span>
+<span class="variable">fruits</span> = <span class="variable">data</span>.<span class="function">split</span>(<span class="string">","</span>)
+<span class="function">print</span>(<span class="variable">fruits</span>)  <span class="output"># ['яблоко', 'банан', 'груша']</span>
+
+<span class="comment"># Объединить список в строку</span>
+<span class="variable">words</span> = [<span class="string">"Привет"</span>, <span class="string">"мир"</span>]
+<span class="variable">result</span> = <span class="string">" "</span>.<span class="function">join</span>(<span class="variable">words</span>)
+<span class="function">print</span>(<span class="variable">result</span>)  <span class="output"># "Привет мир"</span></pre>
+            </div>
+
+            <h3>Срезы строк</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Срезы (slicing)</span>
+                    <button class="copy-btn" onclick="copyCode(this)">📋 Копировать</button>
+                </div>
+                <pre><span class="variable">text</span> = <span class="string">"Python"</span>
+<span class="comment">#       012345</span>
+
+<span class="function">print</span>(<span class="variable">text</span>[<span class="number">0</span>])      <span class="output"># P (первый символ)</span>
+<span class="function">print</span>(<span class="variable">text</span>[<span class="number">-1</span>])     <span class="output"># n (последний)</span>
+<span class="function">print</span>(<span class="variable">text</span>[<span class="number">0</span>:<span class="number">3</span>])    <span class="output"># Pyt (с 0 по 2)</span>
+<span class="function">print</span>(<span class="variable">text</span>[:<span class="number">3</span>])     <span class="output"># Pyt (первые 3)</span>
+<span class="function">print</span>(<span class="variable">text</span>[<span class="number">3</span>:])     <span class="output"># hon (с 3 до конца)</span>
+<span class="function">print</span>(<span class="variable">text</span>[::<span class="number">-1</span>])   <span class="output"># nohtyP (наоборот)</span></pre>
+            </div>
+
+            <!-- Задание 10 -->
+            <div class="task" id="task10">
+                <div class="task-header">
+                    <span class="task-icon">✏️</span>
+                    <h3>Задание 10: Обработка email</h3>
+                </div>
+                <p>Дана строка <code>email = "  User@Example.COM  "</code></p>
+                <p>Приведи её к нижнему регистру, убери пробелы и выведи результат.</p>
+                <textarea class="task-input" id="task10-input" placeholder='email = "  User@Example.COM  "&#10;&#10;clean_email = email.strip().lower()&#10;print(clean_email)'></textarea>
+                <div class="task-buttons">
+                    <button class="btn btn-primary" onclick="checkTask10()">Проверить</button>
+                    <button class="btn btn-secondary" onclick="showHint10()">Подсказка</button>
+                </div>
+                <div class="task-result" id="task10-result"></div>
+            </div>
+        </section>
+
+        <!-- Финальный блок -->
+        <section class="lesson" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2)); border-color: var(--success);">
+            <div class="lesson-header">
+                <div class="lesson-number" style="background: var(--success);">🎉</div>
+                <h2>Поздравляем! Ты прошёл основы Python!</h2>
+            </div>
+            
+            <p>Ты изучил самые важные темы:</p>
+            
+            <ul>
+                <li>✅ <code>print()</code> — вывод на экран</li>
+                <li>✅ Переменные — хранение данных</li>
+                <li>✅ Типы данных — str, int, float, bool</li>
+                <li>✅ Математические операции</li>
+                <li>✅ Условия if/elif/else</li>
+                <li>✅ Циклы for и while</li>
+                <li>✅ Списки и их методы</li>
+                <li>✅ Функции def/return</li>
+                <li>✅ Словари dict</li>
+                <li>✅ Работа со строками</li>
+            </ul>
+            
+            <p><strong>Что дальше?</strong></p>
+            <ul>
+                <li>🔹 Изучи работу с файлами</li>
+                <li>🔹 Познакомься с библиотеками (requests, selenium)</li>
+                <li>🔹 Начни писать свои маленькие проекты</li>
+                <li>🔹 Практикуйся каждый день!</li>
+            </ul>
+        </section>
+
+        <!-- Навигация -->
+        <div class="lesson-nav">
+            <a href="#lesson1">← К началу</a>
+            <a href="#lesson6">К циклам →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>🐍 Python с нуля | Создано для начинающих</p>
+    </footer>
+
+    <script>
+        // ===== Копирование кода =====
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('pre').innerText;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    button.textContent = '📋 Копировать';
+                }, 2000);
+            });
+        }
+
+        // ===== Прогресс-бар =====
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // ===== Проверка заданий =====
+        
+        // Задание 1
+        function checkTask1() {
+            const input = document.getElementById('task1-input').value;
+            const result = document.getElementById('task1-result');
+            
+            if (input.includes('print') && input.includes('(') && input.includes(')') && 
+                (input.includes('"') || input.includes("'"))) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Отлично! Ты написал свою первую программу!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Попробуй ещё раз. Используй print() с текстом в кавычках.';
+            }
+        }
+        
+        function showHint1() {
+            alert('Подсказка: напиши print("Привет, [твоё имя]!")');
+        }
+
+        // Задание 2
+        function checkTask2() {
+            const input = document.getElementById('task2-input').value;
+            const result = document.getElementById('task2-result');
+            
+            if (input.includes('city') && input.includes('year') && 
+                input.includes('print') && input.includes('=')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Молодец! Ты создал переменные и вывел их на экран!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Убедись, что создал переменные city и year и вывел их через print().';
+            }
+        }
+        
+        function showHint2() {
+            alert('Подсказка:\ncity = "Москва"\nyear = 2026\nprint(city)\nprint(year)');
+        }
+
+        // Задание 3
+        function checkTask3() {
+            const input = document.getElementById('task3-input').value;
+            const result = document.getElementById('task3-result');
+            
+            if (input.includes('name') && input.includes('age') && 
+                input.includes('print') && input.includes('f"') && 
+                input.includes('{') && input.includes('}')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Превосходно! Ты освоил f-строки!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Используй f-строку: print(f"текст {переменная}")';
+            }
+        }
+        
+        function showHint3() {
+            alert('Подсказка:\nname = "Анна"\nage = 25\nprint(f"Меня зовут {name}, мне {age} лет")');
+        }
+
+        // Задание 4
+        function checkTask4() {
+            const input = document.getElementById('task4-input').value;
+            const result = document.getElementById('task4-result');
+            
+            if (input.includes('a') && input.includes('b') && 
+                input.includes('+') && input.includes('-') && input.includes('*') &&
+                input.includes('print')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Супер! Ты создал калькулятор!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Создай переменные a и b, затем выведи a+b, a-b, a*b';
+            }
+        }
+        
+        function showHint4() {
+            alert('Подсказка:\na = 15\nb = 4\nprint(a + b)\nprint(a - b)\nprint(a * b)');
+        }
+
+        // Задание 5
+        function checkTask5() {
+            const input = document.getElementById('task5-input').value;
+            const result = document.getElementById('task5-result');
+            
+            if (input.includes('password') && input.includes('user_input') && 
+                input.includes('if') && input.includes('==') && 
+                input.includes('else') && input.includes('print')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Отлично! Ты написал проверку пароля!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Используй if password == user_input: для сравнения';
+            }
+        }
+        
+        function showHint5() {
+            alert('Подсказка:\npassword = "secret123"\nuser_input = "secret123"\n\nif password == user_input:\n    print("Доступ разрешён")\nelse:\n    print("Неверный пароль")');
+        }
+
+        // Задание 6
+        function checkTask6() {
+            const input = document.getElementById('task6-input').value;
+            const result = document.getElementById('task6-result');
+            
+            if (input.includes('for') && input.includes('range') && 
+                input.includes('print') && input.includes('5') && input.includes('*')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Отлично! Таблица умножения готова!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Используй цикл for с range(1, 11) и умножение на 5';
+            }
+        }
+        
+        function showHint6() {
+            alert('Подсказка:\nfor i in range(1, 11):\n    print(f"5 x {i} = {5 * i}")');
+        }
+
+        // Задание 7
+        function checkTask7() {
+            const input = document.getElementById('task7-input').value;
+            const result = document.getElementById('task7-result');
+            
+            if (input.includes('[') && input.includes(']') && 
+                input.includes('for') && input.includes('print')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Супер! Ты научился работать со списками!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Создай список в квадратных скобках и переберай его циклом for';
+            }
+        }
+        
+        function showHint7() {
+            alert('Подсказка:\nshopping = ["Хлеб", "Молоко", "Яйца"]\n\nfor i, item in enumerate(shopping):\n    print(f"{i + 1}. {item}")');
+        }
+
+        // Задание 8
+        function checkTask8() {
+            const input = document.getElementById('task8-input').value;
+            const result = document.getElementById('task8-result');
+            
+            if (input.includes('def') && input.includes('area') && 
+                input.includes('return') && input.includes('*')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Молодец! Ты создал свою функцию!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Используй def area(width, height): и return width * height';
+            }
+        }
+        
+        function showHint8() {
+            alert('Подсказка:\ndef area(width, height):\n    return width * height\n\nresult = area(5, 3)\nprint(result)');
+        }
+
+        // Задание 9
+        function checkTask9() {
+            const input = document.getElementById('task9-input').value;
+            const result = document.getElementById('task9-result');
+            
+            if (input.includes('{') && input.includes('}') && 
+                input.includes('name') && input.includes('age') && input.includes('hobby')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Отлично! Ты освоил словари!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Создай словарь с ключами name, age, hobby в фигурных скобках';
+            }
+        }
+        
+        function showHint9() {
+            alert('Подсказка:\nprofile = {\n    "name": "Иван",\n    "age": 30,\n    "hobby": "программирование"\n}\nprint(f"Имя: {profile[\"name\"]}")');
+        }
+
+        // Задание 10
+        function checkTask10() {
+            const input = document.getElementById('task10-input').value;
+            const result = document.getElementById('task10-result');
+            
+            if (input.includes('strip') && input.includes('lower') && input.includes('print')) {
+                result.className = 'task-result correct';
+                result.innerHTML = '✅ Превосходно! Ты научился обрабатывать строки!';
+            } else {
+                result.className = 'task-result incorrect';
+                result.innerHTML = '❌ Используй .strip() для пробелов и .lower() для регистра';
+            }
+        }
+        
+        function showHint10() {
+            alert('Подсказка:\nemail = "  User@Example.COM  "\nclean_email = email.strip().lower()\nprint(clean_email)');
+        }
+
+        // ===== Плавная прокрутка =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

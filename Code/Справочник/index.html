@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочник по функциям и операциям Python Testing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">QA Справочник</h1>
+            <div class="nav-links">
+                <a href="#selenium" class="nav-link">Selenium</a>
+                <a href="#requests" class="nav-link">Requests</a>
+                <a href="#pytest" class="nav-link">Pytest</a>
+                <a href="#python" class="nav-link">Python</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero-section">
+            <h1>Справочник по функциям и операциям</h1>
+            <p>Документация по всем функциям и операциям, используемым в проектах автоматизации тестирования</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Поиск по функциям, методам и операциям..." class="search-input">
+                <button type="button" class="search-btn">🔍</button>
+            </div>
+        </div>
+
+        <div class="filters-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">Все</button>
+                <button class="filter-btn" data-category="selenium">Selenium</button>
+                <button class="filter-btn" data-category="requests">Requests</button>
+                <button class="filter-btn" data-category="pytest">Pytest</button>
+                <button class="filter-btn" data-category="python">Python</button>
+            </div>
+        </div>
+
+        <div class="content-list">
+            <!-- Selenium Functions -->
+            <div class="function-item" data-category="selenium">
+                <div class="function-header">
+                    <h3>webdriver.Chrome()</h3>
+                    <span class="category-badge selenium">Selenium</span>
+                </div>
+                <p class="function-description">Создает экземпляр Chrome WebDriver для автоматизации браузера</p>
+                <div class="function-code"><code>driver = webdriver.Chrome()</code></div>
+            </div>
+
+            <div class="function-item" data-category="selenium">
+                <div class="function-header">
+                    <h3>find_element(By.NAME, "name")</h3>
+                    <span class="category-badge selenium">Selenium</span>
+                </div>
+                <p class="function-description">Находит элемент на странице по указанному селектору</p>
+                <div class="function-code"><code>element = driver.find_element(By.NAME, "username")</code></div>
+            </div>
+
+            <div class="function-item" data-category="selenium">
+                <div class="function-header">
+                    <h3>WebDriverWait(driver, timeout)</h3>
+                    <span class="category-badge selenium">Selenium</span>
+                </div>
+                <p class="function-description">Создает объект для ожидания выполнения условий</p>
+                <div class="function-code"><code>wait = WebDriverWait(driver, 10)</code></div>
+            </div>
+
+            <div class="function-item" data-category="selenium">
+                <div class="function-header">
+                    <h3>send_keys(text)</h3>
+                    <span class="category-badge selenium">Selenium</span>
+                </div>
+                <p class="function-description">Отправляет текст в элемент формы</p>
+                <div class="function-code"><code>input_field.send_keys("Текст для ввода")</code></div>
+            </div>
+
+            <div class="function-item" data-category="selenium">
+                <div class="function-header">
+                    <h3>execute_script(script, *args)</h3>
+                    <span class="category-badge selenium">Selenium</span>
+                </div>
+                <p class="function-description">Выполняет JavaScript код в браузере</p>
+                <div class="function-code"><code>driver.execute_script("arguments[0].scrollIntoView();", element)</code></div>
+            </div>
+
+            <!-- Requests Functions -->
+            <div class="function-item" data-category="requests">
+                <div class="function-header">
+                    <h3>requests.post(url, json=data)</h3>
+                    <span class="category-badge requests">Requests</span>
+                </div>
+                <p class="function-description">Отправляет POST запрос с JSON данными</p>
+                <div class="function-code"><code>response = requests.post(url, json=user_data)</code></div>
+            </div>
+
+            <div class="function-item" data-category="requests">
+                <div class="function-header">
+                    <h3>response.json()</h3>
+                    <span class="category-badge requests">Requests</span>
+                </div>
+                <p class="function-description">Парсит JSON ответ в Python объект</p>
+                <div class="function-code"><code>data = response.json()</code></div>
+            </div>
+
+            <div class="function-item" data-category="requests">
+                <div class="function-header">
+                    <h3>response.status_code</h3>
+                    <span class="category-badge requests">Requests</span>
+                </div>
+                <p class="function-description">HTTP статус код ответа</p>
+                <div class="function-code"><code>assert response.status_code == 201</code></div>
+            </div>
+
+            <div class="function-item" data-category="requests">
+                <div class="function-header">
+                    <h3>requests.get(url)</h3>
+                    <span class="category-badge requests">Requests</span>
+                </div>
+                <p class="function-description">Отправляет GET запрос для получения данных</p>
+                <div class="function-code"><code>response = requests.get(f"{BASE_URL}/users")</code></div>
+            </div>
+
+            <div class="function-item" data-category="requests">
+                <div class="function-header">
+                    <h3>response.headers</h3>
+                    <span class="category-badge requests">Requests</span>
+                </div>
+                <p class="function-description">Доступ к HTTP заголовкам ответа</p>
+                <div class="function-code"><code>assert "content-type" in response.headers</code></div>
+            </div>
+
+            <!-- Pytest Functions -->
+            <div class="function-item" data-category="pytest">
+                <div class="function-header">
+                    <h3>@pytest.fixture</h3>
+                    <span class="category-badge pytest">Pytest</span>
+                </div>
+                <p class="function-description">Декоратор для создания фикстур</p>
+                <div class="function-code"><code>@pytest.fixture<br>def driver(): ...</code></div>
+            </div>
+
+            <div class="function-item" data-category="pytest">
+                <div class="function-header">
+                    <h3>assert condition</h3>
+                    <span class="category-badge pytest">Pytest</span>
+                </div>
+                <p class="function-description">Утверждение для проверки условий в тестах</p>
+                <div class="function-code"><code>assert response.status_code == 201</code></div>
+            </div>
+
+            <div class="function-item" data-category="pytest">
+                <div class="function-header">
+                    <h3>isinstance(obj, type)</h3>
+                    <span class="category-badge pytest">Pytest</span>
+                </div>
+                <p class="function-description">Проверяет тип объекта</p>
+                <div class="function-code"><code>assert isinstance(response_data["id"], int)</code></div>
+            </div>
+
+            <div class="function-item" data-category="pytest">
+                <div class="function-header">
+                    <h3>assert "field" in obj</h3>
+                    <span class="category-badge pytest">Pytest</span>
+                </div>
+                <p class="function-description">Проверяет наличие поля в объекте</p>
+                <div class="function-code"><code>assert "id" in response_data</code></div>
+            </div>
+
+            <div class="function-item" data-category="pytest">
+                <div class="function-header">
+                    <h3>TestUserCreation class</h3>
+                    <span class="category-badge pytest">Pytest</span>
+                </div>
+                <p class="function-description">Класс для группировки связанных тестов</p>
+                <div class="function-code"><code>class TestUserCreation: ...</code></div>
+            </div>
+
+            <div class="function-item" data-category="pytest">
+                <div class="function-header">
+                    <h3>pytest.main([args])</h3>
+                    <span class="category-badge pytest">Pytest</span>
+                </div>
+                <p class="function-description">Программный запуск pytest</p>
+                <div class="function-code"><code>pytest.main(["-v", __file__])</code></div>
+            </div>
+
+            <!-- Python Functions -->
+            <div class="function-item" data-category="python">
+                <div class="function-header">
+                    <h3>random.randint(a, b)</h3>
+                    <span class="category-badge python">Python</span>
+                </div>
+                <p class="function-description">Генерирует случайное целое число в диапазоне</p>
+                <div class="function-code"><code>user_id = random.randint(1000, 9999)</code></div>
+            </div>
+
+            <div class="function-item" data-category="python">
+                <div class="function-header">
+                    <h3>time.sleep(seconds)</h3>
+                    <span class="category-badge python">Python</span>
+                </div>
+                <p class="function-description">Приостанавливает выполнение на указанное время</p>
+                <div class="function-code"><code>time.sleep(3)</code></div>
+            </div>
+
+            <div class="function-item" data-category="python">
+                <div class="function-header">
+                    <h3>isinstance(object, classinfo)</h3>
+                    <span class="category-badge python">Python</span>
+                </div>
+                <p class="function-description">Проверяет, является ли объект экземпляром указанного типа</p>
+                <div class="function-code"><code>isinstance(response_data["id"], int)</code></div>
+            </div>
+
+            <div class="function-item" data-category="python">
+                <div class="function-header">
+                    <h3>dict(object)</h3>
+                    <span class="category-badge python">Python</span>
+                </div>
+                <p class="function-description">Преобразует объект в словарь</p>
+                <div class="function-code"><code>print(dict(response.headers))</code></div>
+            </div>
+
+            <div class="function-item" data-category="python">
+                <div class="function-header">
+                    <h3>f"string {variable}"</h3>
+                    <span class="category-badge python">Python</span>
+                </div>
+                <p class="function-description">F-строки для форматирования строк</p>
+                <div class="function-code"><code>url = f"{BASE_URL}/users"</code></div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>Ничего не найдено</h3>
+            <p>Попробуйте изменить поисковый запрос или фильтры</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 QA Справочник. Документация по функциям автоматизации тестирования.</p>
+            <p>Создано для команды QA. Версия 1.0</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

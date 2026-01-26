@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по Автоматическому Тестированию</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Практические Задания по Автоматизации Тестирования</h1>
+            <p class="subtitle">Освойте основы автотестирования с помощью этих практических заданий</p>
+        </header>
+
+        <nav class="progress-bar">
+            <div class="progress-step active" data-task="1">
+                <span class="step-number">1</span>
+                <span class="step-title">Веб-форма</span>
+            </div>
+            <div class="progress-step" data-task="2">
+                <span class="step-number">2</span>
+                <span class="step-title">API</span>
+            </div>
+            <div class="progress-step" data-task="3">
+                <span class="step-number">3</span>
+                <span class="step-title">Мобильный</span>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Задание 1: Автотесты для веб-формы -->
+            <section class="task-card active" id="task-1">
+                <div class="task-header">
+                    <h2>📝 Задание 1: Автоматизация тестирования веб-формы</h2>
+                    <div class="difficulty">Уровень: Начинающий</div>
+                </div>
+                
+                <div class="task-content">
+                    <h3>Цель:</h3>
+                    <p>Написать автотесты для формы регистрации пользователя с использованием Selenium WebDriver</p>
+                    
+                    <h3>Описание задачи:</h3>
+                    <div class="scenario">
+                        <h4>📱 Тестируемое приложение:</h4>
+                        <p>Форма регистрации на сайте с полями:</p>
+                        <ul>
+                            <li><strong>Имя</strong> (обязательное, 2-50 символов)</li>
+                            <li><strong>Email</strong> (обязательное, валидация формата)</li>
+                            <li><strong>Пароль</strong> (обязательное, минимум 8 символов)</li>
+                            <li><strong>Подтверждение пароля</strong> (должно совпадать с паролем)</li>
+                            <li><strong>Согласие с условиями</strong> (checkbox, обязательное)</li>
+                        </ul>
+                    </div>
+
+                    <h3>🎯 Тест-кейсы для автоматизации:</h3>
+                    <div class="test-cases">
+                        <div class="test-case">
+                            <h4>1. Позитивный тест - успешная регистрация</h4>
+                            <ol>
+                                <li>Открыть страницу регистрации</li>
+                                <li>Заполнить все поля валидными данными</li>
+                                <li>Поставить галочку "Согласие с условиями"</li>
+                                <li>Нажать кнопку "Зарегистрироваться"</li>
+                                <li>Проверить появление сообщения об успешной регистрации</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="test-case">
+                            <h4>2. Негативный тест - пустые поля</h4>
+                            <ol>
+                                <li>Открыть страницу регистрации</li>
+                                <li>Нажать кнопку "Зарегистрироваться" без заполнения полей</li>
+                                <li>Проверить появление сообщений об ошибках для всех обязательных полей</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="test-case">
+                            <h4>3. Валидация email</h4>
+                            <ol>
+                                <li>Ввести невалидный email (например, "test@")</li>
+                                <li>Попытаться зарегистрироваться</li>
+                                <li>Проверить сообщение об ошибке валидации email</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="hints-section">
+                        <button class="hint-button" onclick="toggleHints('task1')">💡 Показать подсказки</button>
+                        <div class="hints" id="task1-hints">
+                            <h4>Подсказки:</h4>
+                            <ul>
+                                <li>Используйте Page Object Model для структурирования кода</li>
+                                <li>Добавьте явные ожидания (WebDriverWait) вместо Thread.sleep</li>
+                                <li>Используйте TestNG или JUnit для организации тестов</li>
+                                <li>Создайте отдельный класс для тестовых данных</li>
+                            </ul>
+                            
+                            <h4>Пример структуры:</h4>
+                            <div class="code-example">
+                                <pre><code>public class RegistrationPageTest {
+    private WebDriver driver;
+    private RegistrationPage registrationPage;
+    
+    @BeforeEach
+    void setUp() {
+        driver = new ChromeDriver();
+        registrationPage = new RegistrationPage(driver);
+    }
+    
+    @Test
+    void successfulRegistration() {
+        registrationPage.open();
+        registrationPage.fillForm("Иван", "ivan@test.com", "password123", "password123");
+        registrationPage.acceptTerms();
+        registrationPage.submitForm();
+        
+        assertTrue(registrationPage.isSuccessMessageDisplayed());
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Задание 2: API тестирование -->
+            <section class="task-card" id="task-2">
+                <div class="task-header">
+                    <h2>🌐 Задание 2: Автоматизация API тестирования</h2>
+                    <div class="difficulty">Уровень: Начинающий+</div>
+                </div>
+                
+                <div class="task-content">
+                    <h3>Цель:</h3>
+                    <p>Создать автотесты для REST API с использованием RestAssured или аналогичной библиотеки</p>
+                    
+                    <h3>Описание задачи:</h3>
+                    <div class="scenario">
+                        <h4>🔌 Тестируемый API:</h4>
+                        <p>API для управления списком пользователей (CRUD операции):</p>
+                        <ul>
+                            <li><strong>GET /api/users</strong> - получить список пользователей</li>
+                            <li><strong>GET /api/users/{id}</strong> - получить пользователя по ID</li>
+                            <li><strong>POST /api/users</strong> - создать нового пользователя</li>
+                            <li><strong>PUT /api/users/{id}</strong> - обновить пользователя</li>
+                            <li><strong>DELETE /api/users/{id}</strong> - удалить пользователя</li>
+                        </ul>
+                    </div>
+
+                    <h3>🎯 Тест-кейсы для автоматизации:</h3>
+                    <div class="test-cases">
+                        <div class="test-case">
+                            <h4>1. Создание пользователя (POST)</h4>
+                            <ol>
+                                <li>Отправить POST запрос с валидными данными пользователя</li>
+                                <li>Проверить код ответа 201</li>
+                                <li>Проверить структуру ответа и наличие ID</li>
+                                <li>Проверить, что данные сохранились корректно</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="test-case">
+                            <h4>2. Получение списка пользователей (GET)</h4>
+                            <ol>
+                                <li>Создать нескольких пользователей</li>
+                                <li>Отправить GET запрос на получение списка</li>
+                                <li>Проверить код ответа 200</li>
+                                <li>Проверить, что все созданные пользователи присутствуют</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="test-case">
+                            <h4>3. Валидация негативных сценариев</h4>
+                            <ol>
+                                <li>Попытка создать пользователя с невалидными данными</li>
+                                <li>Запрос несуществующего пользователя (404)</li>
+                                <li>Обновление/удаление несуществующего пользователя</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="hints-section">
+                        <button class="hint-button" onclick="toggleHints('task2')">💡 Показать подсказки</button>
+                        <div class="hints" id="task2-hints">
+                            <h4>Подсказки:</h4>
+                            <ul>
+                                <li>Используйте JSONPath или аналог для проверки JSON ответов</li>
+                                <li>Создайте базовый класс для общих настроек API</li>
+                                <li>Используйте Builder pattern для создания запросов</li>
+                                <li>Добавьте логирование запросов и ответов</li>
+                            </ul>
+                            
+                            <h4>Пример кода (RestAssured):</h4>
+                            <div class="code-example">
+                                <pre><code>@Test
+public void createUserTest() {
+    User newUser = new User("Анна", "anna@test.com");
+    
+    Response response = given()
+        .contentType(ContentType.JSON)
+        .body(newUser)
+    .when()
+        .post("/api/users")
+    .then()
+        .statusCode(201)
+        .extract().response();
+        
+    int userId = response.path("id");
+    assertEquals(newUser.getName(), response.path("name"));
+    assertTrue(userId > 0);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Задание 3: Мобильное тестирование -->
+            <section class="task-card" id="task-3">
+                <div class="task-header">
+                    <h2>📱 Задание 3: Автоматизация мобильного тестирования</h2>
+                    <div class="difficulty">Уровень: Средний</div>
+                </div>
+                
+                <div class="task-content">
+                    <h3>Цель:</h3>
+                    <p>Создать автотесты для мобильного приложения с использованием Appium</p>
+                    
+                    <h3>Описание задачи:</h3>
+                    <div class="scenario">
+                        <h4>📱 Тестируемое приложение:</h4>
+                        <p>Простое приложение "Калькулятор" с функциями:</p>
+                        <ul>
+                            <li><strong>Основные операции:</strong> +, -, ×, ÷</li>
+                            <li><strong>Дополнительные функции:</strong> очистка (C), удаление последнего символа</li>
+                            <li><strong>Экран результата</strong> с историей вычислений</li>
+                        </ul>
+                    </div>
+
+                    <h3>🎯 Тест-кейсы для автоматизации:</h3>
+                    <div class="test-cases">
+                        <div class="test-case">
+                            <h4>1. Базовые математические операции</h4>
+                            <ol>
+                                <li>Запустить приложение</li>
+                                <li>Выполнить простые вычисления (2+2, 10-5, 3×4, 8÷2)</li>
+                                <li>Проверить правильность результатов</li>
+                                <li>Проверить отображение промежуточных вычислений</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="test-case">
+                            <h4>2. Обработка ошибок</h4>
+                            <ol>
+                                <li>Попытка деления на ноль</li>
+                                <li>Ввод очень больших чисел</li>
+                                <li>Проверка корректного отображения ошибок</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="test-case">
+                            <h4>3. Функции очистки и истории</h4>
+                            <ol>
+                                <li>Выполнить несколько вычислений</li>
+                                <li>Проверить работу кнопки "C" (полная очистка)</li>
+                                <li>Проверить работу удаления последнего символа</li>
+                                <li>Проверить сохранение истории вычислений</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="hints-section">
+                        <button class="hint-button" onclick="toggleHints('task3')">💡 Показать подсказки</button>
+                        <div class="hints" id="task3-hints">
+                            <h4>Подсказки:</h4>
+                            <ul>
+                                <li>Настройте эмулятор Android или используйте реальное устройство</li>
+                                <li>Изучите иерархию элементов приложения через Appium Inspector</li>
+                                <li>Используйте стратегии поиска элементов: ID, XPath, AccessibilityId</li>
+                                <li>Добавьте методы для работы с жестами (свайпы, тапы)</li>
+                                <li>Создайте Page Object классы для экранов приложения</li>
+                            </ul>
+                            
+                            <h4>Пример настройки (Java):</h4>
+                            <div class="code-example">
+                                <pre><code>@BeforeEach
+void setUp() {
+    DesiredCapabilities caps = new DesiredCapabilities();
+    caps.setCapability("platformName", "Android");
+    caps.setCapability("platformVersion", "11");
+    caps.setCapability("deviceName", "emulator-5554");
+    caps.setCapability("appPackage", "com.android.calculator2");
+    caps.setCapability("appActivity", "com.android.calculator2.Calculator");
+    
+    driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), caps);
+}
+
+@Test
+void additionTest() {
+    calculatorPage.clickNumber(2);
+    calculatorPage.clickOperation("+");
+    calculatorPage.clickNumber(2);
+    calculatorPage.clickEquals();
+    
+    String result = calculatorPage.getResult();
+    assertEquals("4", result);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Дополнительные ресурсы -->
+            <section class="resources-section">
+                <h2>📚 Дополнительные ресурсы</h2>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h3>🎓 Обучающие материалы</h3>
+                        <ul>
+                            <li><a href="https://selenium-python.readthedocs.io/" target="_blank">Selenium Documentation</a></li>
+                            <li><a href="http://appium.io/docs/en/about-appium/intro/" target="_blank">Appium Guide</a></li>
+                            <li><a href="https://rest-assured.io/" target="_blank">RestAssured Documentation</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>🛠 Инструменты</h3>
+                        <ul>
+                            <li>Selenium WebDriver</li>
+                            <li>TestNG / JUnit</li>
+                            <li>Maven / Gradle</li>
+                            <li>Postman для API тестирования</li>
+                            <li>Appium Inspector</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>💡 Лучшие практики</h3>
+                        <ul>
+                            <li>Page Object Model</li>
+                            <li>Принцип DRY (Don't Repeat Yourself)</li>
+                            <li>Explicit Waits</li>
+                            <li>Параллельное выполнение тестов</li>
+                            <li>Генерация отчетов (Allure, ExtentReports)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Удачи в изучении автоматизации тестирования! 🚀</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
