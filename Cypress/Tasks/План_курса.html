@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>План курса: Тестирование + Cypress</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .stage {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #667eea;
+        }
+
+        .stage-title {
+            font-size: 1.8em;
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .module {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .module-title {
+            font-size: 1.3em;
+            color: #495057;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .module-content ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .module-content li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .module-content li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .practice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .practice strong {
+            color: #856404;
+        }
+
+        .final-project {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .final-project-title {
+            color: #155724;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .detail-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85em;
+            margin-left: 15px;
+            transition: all 0.3s;
+            font-weight: normal;
+        }
+
+        .detail-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .stage-title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тестирование + Cypress<br>с нуля до уверенного уровня</h1>
+
+        <div class="stage">
+            <div class="stage-title-wrapper">
+                <div class="stage-title" style="margin-bottom: 0;">ЭТАП 0 — Мышление тестировщика</div>
+                <a href="Этап_0_детали.html" target="_blank" class="detail-link">📖 Подробное описание</a>
+            </div>
+            
+            <div class="module" style="margin-top: 20px;">
+                <div class="module-title">Модуль 1. Что такое тестирование</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Зачем бизнесу тестирование</li>
+                        <li>QA vs QC</li>
+                        <li>Что такое качество</li>
+                        <li>Что такое баг и риск</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Найти 10 потенциальных багов на любом сайте.
+                    </div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 2. Виды тестирования</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Ручное и автоматизация</li>
+                        <li>Функциональное и нефункциональное</li>
+                        <li>Smoke, Sanity, Regression</li>
+                        <li>UI vs API</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Определить, что автоматизировать в заданном проекте.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title-wrapper">
+                <div class="stage-title" style="margin-bottom: 0;">ЭТАП 1 — JavaScript для тестировщика</div>
+                <a href="Этап_1_детали.html" target="_blank" class="detail-link">📖 Подробное описание</a>
+            </div>
+            
+            <div class="module" style="margin-top: 20px;">
+                <div class="module-title">Модуль 3. База JavaScript</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Переменные</li>
+                        <li>Типы данных</li>
+                        <li>Функции</li>
+                        <li>Условия</li>
+                        <li>Циклы</li>
+                        <li>Массивы</li>
+                        <li>Объекты</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Написать функцию проверки валидности формы.
+                    </div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 4. Асинхронность</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Что такое async</li>
+                        <li>Promise простыми словами</li>
+                        <li>Почему код выполняется не по порядку</li>
+                        <li>Event Loop без сложной теории</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Симуляция запроса к серверу.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 2 — Основы автоматизации</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 5. Зачем автоматизация</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Когда выгодно автоматизировать</li>
+                        <li>ROI автоматизации</li>
+                        <li>Что чаще всего автоматизируют</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 6. Основы E2E тестирования</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Что такое E2E</li>
+                        <li>Почему UI тесты хрупкие</li>
+                        <li>Основные причины падения тестов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 3 — Cypress с нуля</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 7. Установка и структура</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Node.js</li>
+                        <li>npm</li>
+                        <li>Установка Cypress</li>
+                        <li>Структура проекта</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Запустить первый тест.
+                    </div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 8. Первый тест</div>
+                <div class="module-content">
+                    <ul>
+                        <li>describe</li>
+                        <li>it</li>
+                        <li>cy.visit</li>
+                        <li>cy.get</li>
+                        <li>cy.contains</li>
+                        <li>expect</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Написать тест проверки заголовка страницы.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 4 — Основные команды</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 9. Работа с элементами</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Селекторы</li>
+                        <li>data-testid</li>
+                        <li>Лучшие практики поиска элементов</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 10. Взаимодействие</div>
+                <div class="module-content">
+                    <ul>
+                        <li>click</li>
+                        <li>type</li>
+                        <li>check</li>
+                        <li>select</li>
+                        <li>submit</li>
+                    </ul>
+                    <div class="practice">
+                        <strong>Практика:</strong> Автоматизировать логин.
+                    </div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 11. Assertions и ожидания</div>
+                <div class="module-content">
+                    <ul>
+                        <li>should</li>
+                        <li>expect</li>
+                        <li>Как Cypress ждёт автоматически</li>
+                        <li>Почему не использовать sleep</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 5 — Продвинутый уровень</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 12. Работа с API</div>
+                <div class="module-content">
+                    <ul>
+                        <li>cy.request</li>
+                        <li>Проверка статуса</li>
+                        <li>Проверка тела ответа</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 13. Intercept и моки</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Что такое мок</li>
+                        <li>cy.intercept</li>
+                        <li>Перехват запросов</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 14. Page Object Pattern</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Зачем нужен</li>
+                        <li>Как правильно реализовать</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 15. Custom Commands</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Когда создавать</li>
+                        <li>Как избежать хаоса</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 6 — Архитектура и стабильность</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 16. Flaky тесты</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Почему тесты падают</li>
+                        <li>Тайминги</li>
+                        <li>Селекторы</li>
+                        <li>Стабильность</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 17. Архитектура проекта уровня Middle</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Структура папок</li>
+                        <li>Конфиги</li>
+                        <li>Environment variables</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 7 — Финальный проект</div>
+            
+            <div class="final-project">
+                <div class="final-project-title">Автоматизация тестового приложения:</div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 5px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #28a745; font-weight: bold;">✓</span>
+                        Логин
+                    </li>
+                    <li style="padding: 5px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #28a745; font-weight: bold;">✓</span>
+                        Регистрация
+                    </li>
+                    <li style="padding: 5px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #28a745; font-weight: bold;">✓</span>
+                        CRUD операции
+                    </li>
+                    <li style="padding: 5px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #28a745; font-weight: bold;">✓</span>
+                        API проверки
+                    </li>
+                    <li style="padding: 5px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #28a745; font-weight: bold;">✓</span>
+                        Моки
+                    </li>
+                    <li style="padding: 5px 0; padding-left: 20px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #28a745; font-weight: bold;">✓</span>
+                        Структурированная архитектура
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 8 — CI/CD</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 18. Интеграция в CI</div>
+                <div class="module-content">
+                    <ul>
+                        <li>Что такое CI</li>
+                        <li>GitHub Actions</li>
+                        <li>Запуск тестов в пайплайне</li>
+                        <li>Отчеты</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="stage-title">ЭТАП 9 — Подготовка к собеседованию</div>
+            
+            <div class="module">
+                <div class="module-title">Модуль 19. Вопросы уровня Junior</div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 20. Вопросы уровня Middle</div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Модуль 21. Разбор тестовых заданий</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>План курса по изучению тестирования и Cypress</p>
+            <p>От начинающего до уверенного специалиста</p>
+        </div>
+    </div>
+</body>
+</html>
