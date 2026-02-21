@@ -1,0 +1,58 @@
+{
+  "words": [
+    {
+      "word": "hello",
+      "translation": "привет",
+      "example": "Hello, how are you? — Привет, как дела?"
+    },
+    {
+      "word": "world",
+      "translation": "мир",
+      "example": "The world is beautiful. — Мир прекрасен."
+    },
+    {
+      "word": "friend",
+      "translation": "друг",
+      "example": "He is my best friend. — Он мой лучший друг."
+    },
+    {
+      "word": "book",
+      "translation": "книга",
+      "example": "I love reading books. — Я люблю читать книги."
+    },
+    {
+      "word": "learn",
+      "translation": "учить, изучать",
+      "example": "I learn English every day. — Я учу английский каждый день."
+    },
+    {
+      "word": "happy",
+      "translation": "счастливый",
+      "example": "I am happy to see you. — Я счастлив видеть тебя."
+    },
+    {
+      "word": "day",
+      "translation": "день",
+      "example": "Have a nice day! — Хорошего дня!"
+    },
+    {
+      "word": "beautiful",
+      "translation": "красивый",
+      "example": "What a beautiful day! — Какой красивый день!"
+    }
+  ],
+  "texts": [
+    {
+      "title": "Приветствие",
+      "content": "Hello, my friend! Today is a beautiful day. I am happy to see you. The world is full of wonderful things."
+    },
+    {
+      "title": "Изучение",
+      "content": "I learn something new every day. Reading a good book makes me happy. Knowledge opens the world to us."
+    },
+    {
+      "title": "Дружба",
+      "content": "A true friend is the most beautiful gift in the world. Hello to all my friends! I am happy to have you in my life."
+    }
+  ]
+}

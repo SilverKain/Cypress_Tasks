@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+#stats {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.lesson {
+  margin-bottom: 10px;
+}
+
+.lesson.completed {
+  color: green;
+}

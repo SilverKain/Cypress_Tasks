@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Изучение слов</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Навигация -->
+        <nav class="nav">
+            <button class="nav-btn active" data-tab="words">Слова</button>
+            <button class="nav-btn" data-tab="texts">Тексты</button>
+            <button id="profile-btn" class="profile-btn" title="Сменить профиль">
+                <span id="current-profile-name">Профиль</span>
+            </button>
+        </nav>
+
+        <!-- Раздел со словами -->
+        <div id="words-section" class="section active">
+            <div id="words-container" class="words-container"></div>
+        </div>
+
+        <!-- Раздел с текстами -->
+        <div id="texts-section" class="section">
+            <div id="texts-container" class="texts-container"></div>
+        </div>
+
+        <!-- Модальное окно для перевода -->
+        <div id="translation-modal" class="modal">
+            <div class="modal-content">
+                <h3 id="modal-word"></h3>
+                <p id="modal-translation"></p>
+                <p id="modal-example"></p>
+                <button id="close-modal" class="btn">Закрыть</button>
+            </div>
+        </div>
+
+        <!-- Экран выбора профиля -->
+        <div id="profile-screen" class="profile-screen">
+            <div class="profile-screen-content">
+                <h2>Выберите профиль</h2>
+                <div id="profiles-list" class="profiles-list"></div>
+                <button id="create-profile-btn" class="btn btn-primary">Создать новый профиль</button>
+            </div>
+        </div>
+
+        <!-- Модальное окно создания профиля -->
+        <div id="create-profile-modal" class="modal">
+            <div class="modal-content">
+                <h3>Создать профиль</h3>
+                <input type="text" id="new-profile-name" class="input" placeholder="Название профиля" maxlength="30">
+                <div class="modal-actions">
+                    <button id="save-profile-btn" class="btn btn-primary">Создать</button>
+                    <button id="cancel-profile-btn" class="btn btn-secondary">Отмена</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно управления профилями -->
+        <div id="manage-profiles-modal" class="modal">
+            <div class="modal-content">
+                <h3>Управление профилями</h3>
+                <div id="manage-profiles-list" class="manage-profiles-list"></div>
+                <button id="add-new-profile-btn" class="btn btn-primary">Добавить профиль</button>
+                <button id="close-manage-profiles-btn" class="btn btn-secondary">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

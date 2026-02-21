@@ -1,0 +1,9 @@
+{
+  "id": "html-basic",
+  "title": "Основы HTML",
+  "lessons": [
+    { "id": 1, "title": "Что такое HTML" },
+    { "id": 2, "title": "Теги" },
+    { "id": 3, "title": "Атрибуты" }
+  ]
+}
